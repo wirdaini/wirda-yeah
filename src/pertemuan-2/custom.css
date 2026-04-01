@@ -1,0 +1,408 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+  --primary-dark: #0f172a;
+  --primary-gray: #1e293b;
+  --accent-blue: #3b82f6;
+  --accent-gold: #f59e0b;
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --shadow-main: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 0 1px rgba(59, 130, 246, 0.3);
+  --text-main: #111827;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+}
+
+/* ===== RESET & BASE ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: 
+    radial-gradient(ellipse at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
+    linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-gray) 100%);
+  color: var(--text-main);
+  margin: 0;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+/* Subtle floating background animation */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(4px 4px at 30% 20%, rgba(59, 130, 246, 0.3), transparent),
+    radial-gradient(3px 3px at 70% 80%, rgba(245, 158, 11, 0.2), transparent),
+    radial-gradient(2px 2px at 90% 40%, rgba(59, 130, 246, 0.15), transparent);
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  animation: subtleFloat 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(20px, -10px) scale(1.02);
+  }
+  66% {
+    transform: translate(-15px, 20px) scale(0.98);
+  }
+}
+
+/* ===== MAIN CARD COMPONENT ===== */
+.card {
+  max-width: 880px;
+  margin: 1rem auto;
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px) saturate(120%);
+  padding: 1.75rem 2rem;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-main), var(--shadow-glow), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.03) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1 {
+  text-align: center;
+  margin: 0 0 0.35rem;
+  color: var(--text-main);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+/* h1::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--accent-blue);
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+} */
+
+.slogan-1 {
+  text-align: center;
+  margin: 0 0 0.2rem;
+  font-size: 0.85rem;
+  color: var(--accent-blue);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.slogan-2 {
+  text-align: center;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  font-weight: 400;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== SECTION DIVIDER ===== */
+.section-divider {
+  border: none;
+  height: 2px;
+  background: var(--accent-blue);
+  margin: 1rem auto;
+  border-radius: 1px;
+  width: 50px;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  transform: translateY(-50%);
+}
+
+.section-divider::before {
+  left: -12px;
+}
+
+.section-divider::after {
+  right: -12px;
+}
+
+/* ===== BIODATA SECTION ===== */
+.biodata-container {
+  display: grid;
+  grid-template-columns: 1fr 2.2fr;
+  gap: 1.25rem;
+  margin: 1rem 0;
+  align-items: start;
+}
+
+/* Profile Photo */
+.foto-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.foto-persegi {
+  width: 220px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 
+    0 15px 30px -10px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.8),
+    0 0 0 5px rgba(59, 130, 246, 0.1);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+}
+
+.foto-persegi::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: var(--accent-blue);
+  border-radius: 17px;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+.foto-persegi img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.foto-persegi:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 20px 40px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(59, 130, 246, 0.4);
+}
+
+.foto-persegi:hover img {
+  filter: brightness(1.03) contrast(1.05);
+}
+
+/* Bio Information */
+.info-biodata {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 1.25rem 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.info-biodata::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-blue);
+  border-radius: 20px 20px 0 0;
+}
+
+.info-biodata:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.info-biodata p {
+  margin: 0.75rem 0;
+  line-height: 1.5;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.info-biodata strong {
+  display: inline-block;
+  min-width: 115px;
+  color: var(--accent-blue);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ===== QUOTE SECTION ===== */
+.quote {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  padding: 1.25rem 1.75rem;
+  border-radius: 20px;
+  margin: 1rem 0;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+  position: relative;
+}
+
+.quote::before {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 3rem;
+  color: var(--accent-blue);
+  opacity: 0.1;
+  font-weight: 100;
+  font-family: serif;
+  line-height: 1;
+}
+
+.quote-text {
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0.75rem;
+  color: var(--text-main);
+  font-weight: 400;
+  line-height: 1.6;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+}
+
+.quote-author {
+  margin-top: 0.5rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  body {
+    padding: 0.75rem;
+  }
+  
+  .card {
+    margin: 0.75rem auto;
+    padding: 1.5rem;
+  }
+  
+  .biodata-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .foto-persegi {
+    width: 200px;
+    height: 270px;
+  }
+  
+  .info-biodata strong {
+    min-width: auto;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.25rem;
+  }
+  
+  .info-biodata {
+    padding: 1rem;
+  }
+  
+  .quote {
+    padding: 1rem;
+  }
+  
+  .quote::before {
+    display: none;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  body::before,
+  .card::before {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+    backdrop-filter: none;
+    background: white;
+    margin: 0.5rem auto;
+    padding: 1rem;
+  }
+}
