@@ -1,0 +1,482 @@
+[
+  {
+    "id": 1,
+    "nama": "Hidrogen",
+    "simbol": "H",
+    "nomor_atom": 1,
+    "massa_atom": 1.008,
+    "golongan": "Nonlogam",
+    "periode": 1,
+    "penemu": {
+      "nama": "Henry Cavendish",
+      "tahun": 1766,
+      "negara": "Inggris"
+    },
+    "sifat_fisik": {
+      "warna": "Tidak berwarna",
+      "titik_leleh": -259.16,
+      "titik_didih": -252.87
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s¹",
+      "valensi": 1
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Hydrogen.jpg/200px-Hydrogen.jpg"
+  },
+  {
+    "id": 2,
+    "nama": "Helium",
+    "simbol": "He",
+    "nomor_atom": 2,
+    "massa_atom": 4.0026,
+    "golongan": "Gas Mulia",
+    "periode": 1,
+    "penemu": {
+      "nama": "Pierre Janssen",
+      "tahun": 1868,
+      "negara": "Prancis"
+    },
+    "sifat_fisik": {
+      "warna": "Tidak berwarna",
+      "titik_leleh": -272.20,
+      "titik_didih": -268.93
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s²",
+      "valensi": 0
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Helium_discharge_tube.jpg/200px-Helium_discharge_tube.jpg"
+  },
+  {
+    "id": 3,
+    "nama": "Litium",
+    "simbol": "Li",
+    "nomor_atom": 3,
+    "massa_atom": 6.94,
+    "golongan": "Logam Alkali",
+    "periode": 2,
+    "penemu": {
+      "nama": "Johan August Arfwedson",
+      "tahun": 1817,
+      "negara": "Swedia"
+    },
+    "sifat_fisik": {
+      "warna": "Putih keperakan",
+      "titik_leleh": 180.50,
+      "titik_didih": 1342.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s¹",
+      "valensi": 1
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Lithium_%28Li%29.jpg/200px-Lithium_%28Li%29.jpg"
+  },
+  {
+    "id": 4,
+    "nama": "Berilium",
+    "simbol": "Be",
+    "nomor_atom": 4,
+    "massa_atom": 9.012,
+    "golongan": "Logam Alkali Tanah",
+    "periode": 2,
+    "penemu": {
+      "nama": "Louis-Nicolas Vauquelin",
+      "tahun": 1798,
+      "negara": "Prancis"
+    },
+    "sifat_fisik": {
+      "warna": "Putih keabuan",
+      "titik_leleh": 1287.00,
+      "titik_didih": 2470.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s²",
+      "valensi": 2
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Beryllium.jpg/200px-Beryllium.jpg"
+  },
+  {
+    "id": 5,
+    "nama": "Boron",
+    "simbol": "B",
+    "nomor_atom": 5,
+    "massa_atom": 10.81,
+    "golongan": "Metaloid",
+    "periode": 2,
+    "penemu": {
+      "nama": "Joseph Louis Gay-Lussac",
+      "tahun": 1808,
+      "negara": "Prancis"
+    },
+    "sifat_fisik": {
+      "warna": "Hitam kecoklatan",
+      "titik_leleh": 2076.00,
+      "titik_didih": 3927.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p¹",
+      "valensi": 3
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Boron.jpg/200px-Boron.jpg"
+  },
+  {
+    "id": 6,
+    "nama": "Karbon",
+    "simbol": "C",
+    "nomor_atom": 6,
+    "massa_atom": 12.011,
+    "golongan": "Nonlogam",
+    "periode": 2,
+    "penemu": {
+      "nama": "Dikenal sejak kuno",
+      "tahun": 0,
+      "negara": "-"
+    },
+    "sifat_fisik": {
+      "warna": "Hitam (grafit) / Bening (intan)",
+      "titik_leleh": 3550.00,
+      "titik_didih": 4027.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p²",
+      "valensi": 4
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Carbon.jpg/200px-Carbon.jpg"
+  },
+  {
+    "id": 7,
+    "nama": "Nitrogen",
+    "simbol": "N",
+    "nomor_atom": 7,
+    "massa_atom": 14.007,
+    "golongan": "Nonlogam",
+    "periode": 2,
+    "penemu": {
+      "nama": "Daniel Rutherford",
+      "tahun": 1772,
+      "negara": "Skotlandia"
+    },
+    "sifat_fisik": {
+      "warna": "Tidak berwarna",
+      "titik_leleh": -210.00,
+      "titik_didih": -195.80
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p³",
+      "valensi": 3
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Nitrogen.gif/200px-Nitrogen.gif"
+  },
+  {
+    "id": 8,
+    "nama": "Oksigen",
+    "simbol": "O",
+    "nomor_atom": 8,
+    "massa_atom": 15.999,
+    "golongan": "Nonlogam",
+    "periode": 2,
+    "penemu": {
+      "nama": "Carl Wilhelm Scheele",
+      "tahun": 1772,
+      "negara": "Swedia"
+    },
+    "sifat_fisik": {
+      "warna": "Tidak berwarna",
+      "titik_leleh": -218.79,
+      "titik_didih": -182.96
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁴",
+      "valensi": 2
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Oxygen.jpg/200px-Oxygen.jpg"
+  },
+  {
+    "id": 9,
+    "nama": "Fluorin",
+    "simbol": "F",
+    "nomor_atom": 9,
+    "massa_atom": 18.998,
+    "golongan": "Halogen",
+    "periode": 2,
+    "penemu": {
+      "nama": "Henri Moissan",
+      "tahun": 1886,
+      "negara": "Prancis"
+    },
+    "sifat_fisik": {
+      "warna": "Kuning pucat",
+      "titik_leleh": -219.67,
+      "titik_didih": -188.11
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁵",
+      "valensi": 1
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Fluorine.jpg/200px-Fluorine.jpg"
+  },
+  {
+    "id": 10,
+    "nama": "Neon",
+    "simbol": "Ne",
+    "nomor_atom": 10,
+    "massa_atom": 20.180,
+    "golongan": "Gas Mulia",
+    "periode": 2,
+    "penemu": {
+      "nama": "Sir William Ramsay",
+      "tahun": 1898,
+      "negara": "Inggris"
+    },
+    "sifat_fisik": {
+      "warna": "Tidak berwarna",
+      "titik_leleh": -248.59,
+      "titik_didih": -246.08
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶",
+      "valensi": 0
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Neon.jpg/200px-Neon.jpg"
+  },
+  {
+    "id": 11,
+    "nama": "Natrium",
+    "simbol": "Na",
+    "nomor_atom": 11,
+    "massa_atom": 22.990,
+    "golongan": "Logam Alkali",
+    "periode": 3,
+    "penemu": {
+      "nama": "Sir Humphry Davy",
+      "tahun": 1807,
+      "negara": "Inggris"
+    },
+    "sifat_fisik": {
+      "warna": "Putih keperakan",
+      "titik_leleh": 97.72,
+      "titik_didih": 883.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s¹",
+      "valensi": 1
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Sodium.jpg/200px-Sodium.jpg"
+  },
+  {
+    "id": 12,
+    "nama": "Magnesium",
+    "simbol": "Mg",
+    "nomor_atom": 12,
+    "massa_atom": 24.305,
+    "golongan": "Logam Alkali Tanah",
+    "periode": 3,
+    "penemu": {
+      "nama": "Joseph Black",
+      "tahun": 1755,
+      "negara": "Skotlandia"
+    },
+    "sifat_fisik": {
+      "warna": "Putih keabuan",
+      "titik_leleh": 650.00,
+      "titik_didih": 1090.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s²",
+      "valensi": 2
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Magnesium.jpg/200px-Magnesium.jpg"
+  },
+  {
+    "id": 13,
+    "nama": "Aluminium",
+    "simbol": "Al",
+    "nomor_atom": 13,
+    "massa_atom": 26.981,
+    "golongan": "Logam",
+    "periode": 3,
+    "penemu": {
+      "nama": "Hans Christian Ørsted",
+      "tahun": 1825,
+      "negara": "Denmark"
+    },
+    "sifat_fisik": {
+      "warna": "Putih keperakan",
+      "titik_leleh": 660.32,
+      "titik_didih": 2519.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s² 3p¹",
+      "valensi": 3
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Aluminium.jpg/200px-Aluminium.jpg"
+  },
+  {
+    "id": 14,
+    "nama": "Silikon",
+    "simbol": "Si",
+    "nomor_atom": 14,
+    "massa_atom": 28.085,
+    "golongan": "Metaloid",
+    "periode": 3,
+    "penemu": {
+      "nama": "Jöns Jacob Berzelius",
+      "tahun": 1824,
+      "negara": "Swedia"
+    },
+    "sifat_fisik": {
+      "warna": "Abu metalik",
+      "titik_leleh": 1414.00,
+      "titik_didih": 3265.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s² 3p²",
+      "valensi": 4
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Silicon.jpg/200px-Silicon.jpg"
+  },
+  {
+    "id": 15,
+    "nama": "Fosfor",
+    "simbol": "P",
+    "nomor_atom": 15,
+    "massa_atom": 30.974,
+    "golongan": "Nonlogam",
+    "periode": 3,
+    "penemu": {
+      "nama": "Hennig Brand",
+      "tahun": 1669,
+      "negara": "Jerman"
+    },
+    "sifat_fisik": {
+      "warna": "Putih/kemerahan",
+      "titik_leleh": 44.15,
+      "titik_didih": 280.50
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s² 3p³",
+      "valensi": 3
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Phosphorus.jpg/200px-Phosphorus.jpg"
+  },
+  {
+    "id": 16,
+    "nama": "Belerang",
+    "simbol": "S",
+    "nomor_atom": 16,
+    "massa_atom": 32.06,
+    "golongan": "Nonlogam",
+    "periode": 3,
+    "penemu": {
+      "nama": "Dikenal sejak kuno",
+      "tahun": 0,
+      "negara": "-"
+    },
+    "sifat_fisik": {
+      "warna": "Kuning lemon",
+      "titik_leleh": 115.21,
+      "titik_didih": 444.60
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s² 3p⁴",
+      "valensi": 2
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Sulfur.jpg/200px-Sulfur.jpg"
+  },
+  {
+    "id": 17,
+    "nama": "Klorin",
+    "simbol": "Cl",
+    "nomor_atom": 17,
+    "massa_atom": 35.45,
+    "golongan": "Halogen",
+    "periode": 3,
+    "penemu": {
+      "nama": "Carl Wilhelm Scheele",
+      "tahun": 1774,
+      "negara": "Swedia"
+    },
+    "sifat_fisik": {
+      "warna": "Kuning kehijauan",
+      "titik_leleh": -101.50,
+      "titik_didih": -34.04
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s² 3p⁵",
+      "valensi": 1
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Chlorine.jpg/200px-Chlorine.jpg"
+  },
+  {
+    "id": 18,
+    "nama": "Argon",
+    "simbol": "Ar",
+    "nomor_atom": 18,
+    "massa_atom": 39.95,
+    "golongan": "Gas Mulia",
+    "periode": 3,
+    "penemu": {
+      "nama": "Lord Rayleigh",
+      "tahun": 1894,
+      "negara": "Inggris"
+    },
+    "sifat_fisik": {
+      "warna": "Tidak berwarna",
+      "titik_leleh": -189.35,
+      "titik_didih": -185.85
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s² 3p⁶",
+      "valensi": 0
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Argon.jpg/200px-Argon.jpg"
+  },
+  {
+    "id": 19,
+    "nama": "Kalium",
+    "simbol": "K",
+    "nomor_atom": 19,
+    "massa_atom": 39.098,
+    "golongan": "Logam Alkali",
+    "periode": 4,
+    "penemu": {
+      "nama": "Sir Humphry Davy",
+      "tahun": 1807,
+      "negara": "Inggris"
+    },
+    "sifat_fisik": {
+      "warna": "Putih keperakan",
+      "titik_leleh": 63.38,
+      "titik_didih": 759.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹",
+      "valensi": 1
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Potassium.jpg/200px-Potassium.jpg"
+  },
+  {
+    "id": 20,
+    "nama": "Kalsium",
+    "simbol": "Ca",
+    "nomor_atom": 20,
+    "massa_atom": 40.078,
+    "golongan": "Logam Alkali Tanah",
+    "periode": 4,
+    "penemu": {
+      "nama": "Sir Humphry Davy",
+      "tahun": 1808,
+      "negara": "Inggris"
+    },
+    "sifat_fisik": {
+      "warna": "Putih keabuan",
+      "titik_leleh": 842.00,
+      "titik_didih": 1484.00
+    },
+    "konfigurasi_elektron": {
+      "kulit": "1s² 2s² 2p⁶ 3s² 3p⁶ 4s²",
+      "valensi": 2
+    },
+    "gambar": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Calcium.jpg/200px-Calcium.jpg"
+  }
+]
