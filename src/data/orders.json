@@ -1,0 +1,254 @@
+[
+  {
+    "id": "ORD001",
+    "memberId": "M001",
+    "namaPelanggan": "Budi Santoso",
+    "items": [
+      {
+        "menu": "Cafe Latte",
+        "tingkatGula": "Normal",
+        "harga": 28000,
+        "qty": 2
+      }
+    ],
+    "totalHarga": 56000,
+    "status": "Selesai",
+    "waktuPesan": "2026-05-04T08:15:00",
+    "waktuSelesai": "2026-05-04T08:23:00",
+    "metodePembayaran": "QRIS"
+  },
+  {
+    "id": "ORD002",
+    "memberId": "M003",
+    "namaPelanggan": "Ahmad Rifai",
+    "items": [
+      {
+        "menu": "Espresso",
+        "tingkatGula": "No Sugar",
+        "harga": 22000,
+        "qty": 1
+      },
+      {
+        "menu": "Croissant",
+        "tingkatGula": "-",
+        "harga": 18000,
+        "qty": 1
+      }
+    ],
+    "totalHarga": 40000,
+    "status": "Selesai",
+    "waktuPesan": "2026-05-04T09:30:00",
+    "waktuSelesai": "2026-05-04T09:38:00",
+    "metodePembayaran": "Cash"
+  },
+  {
+    "id": "ORD003",
+    "memberId": "M007",
+    "namaPelanggan": "Gunawan Wijaya",
+    "items": [
+      {
+        "menu": "Americano",
+        "tingkatGula": "Less Sugar",
+        "harga": 25000,
+        "qty": 1
+      }
+    ],
+    "totalHarga": 25000,
+    "status": "Dibuat",
+    "waktuPesan": "2026-05-04T10:05:00",
+    "waktuSelesai": null,
+    "metodePembayaran": "Debit Card"
+  },
+  {
+    "id": "ORD004",
+    "memberId": "M002",
+    "namaPelanggan": "Siti Nurhaliza",
+    "items": [
+      {
+        "menu": "Caramel Macchiato",
+        "tingkatGula": "Normal",
+        "harga": 32000,
+        "qty": 1
+      },
+      {
+        "menu": "Chocolate Cake",
+        "tingkatGula": "-",
+        "harga": 25000,
+        "qty": 1
+      }
+    ],
+    "totalHarga": 57000,
+    "status": "Menunggu",
+    "waktuPesan": "2026-05-04T10:12:00",
+    "waktuSelesai": null,
+    "metodePembayaran": "QRIS"
+  },
+  {
+    "id": "ORD005",
+    "memberId": "M005",
+    "namaPelanggan": "Eko Prasetyo",
+    "items": [
+      {
+        "menu": "Cappuccino",
+        "tingkatGula": "Normal",
+        "harga": 30000,
+        "qty": 2
+      }
+    ],
+    "totalHarga": 60000,
+    "status": "Selesai",
+    "waktuPesan": "2026-05-04T07:45:00",
+    "waktuSelesai": "2026-05-04T07:52:00",
+    "metodePembayaran": "Cash"
+  },
+  {
+    "id": "ORD006",
+    "memberId": "M008",
+    "namaPelanggan": "Hani Pratiwi",
+    "items": [
+      {
+        "menu": "Chocolate Latte",
+        "tingkatGula": "Extra Sugar",
+        "harga": 30000,
+        "qty": 1
+      },
+      {
+        "menu": "Banana Bread",
+        "tingkatGula": "-",
+        "harga": 20000,
+        "qty": 1
+      }
+    ],
+    "totalHarga": 50000,
+    "status": "Selesai",
+    "waktuPesan": "2026-05-04T08:50:00",
+    "waktuSelesai": "2026-05-04T08:58:00",
+    "metodePembayaran": "QRIS"
+  },
+  {
+    "id": "ORD007",
+    "memberId": "M010",
+    "namaPelanggan": "Julia Rahmawati",
+    "items": [
+      {
+        "menu": "Hazelnut Latte",
+        "tingkatGula": "Less Sugar",
+        "harga": 32000,
+        "qty": 1
+      }
+    ],
+    "totalHarga": 32000,
+    "status": "Selesai",
+    "waktuPesan": "2026-05-03T14:20:00",
+    "waktuSelesai": "2026-05-03T14:28:00",
+    "metodePembayaran": "Cash"
+  },
+  {
+    "id": "ORD008",
+    "memberId": "M011",
+    "namaPelanggan": "Kevin Tan",
+    "items": [
+      {
+        "menu": "Mocha",
+        "tingkatGula": "Normal",
+        "harga": 33000,
+        "qty": 1
+      },
+      {
+        "menu": "Cheese Cake",
+        "tingkatGula": "-",
+        "harga": 28000,
+        "qty": 1
+      }
+    ],
+    "totalHarga": 61000,
+    "status": "Selesai",
+    "waktuPesan": "2026-05-03T16:10:00",
+    "waktuSelesai": "2026-05-03T16:18:00",
+    "metodePembayaran": "Debit Card"
+  },
+  {
+    "id": "ORD009",
+    "memberId": "M001",
+    "namaPelanggan": "Budi Santoso",
+    "items": [
+      {
+        "menu": "Cafe Latte",
+        "tingkatGula": "Normal",
+        "harga": 28000,
+        "qty": 1
+      },
+      {
+        "menu": "Croissant",
+        "tingkatGula": "-",
+        "harga": 18000,
+        "qty": 2
+      }
+    ],
+    "totalHarga": 64000,
+    "status": "Selesai",
+    "waktuPesan": "2026-05-02T09:00:00",
+    "waktuSelesai": "2026-05-02T09:10:00",
+    "metodePembayaran": "QRIS"
+  },
+  {
+    "id": "ORD010",
+    "memberId": "M004",
+    "namaPelanggan": "Dewi Lestari",
+    "items": [
+      {
+        "menu": "Vanilla Latte",
+        "tingkatGula": "Extra Sugar",
+        "harga": 30000,
+        "qty": 1
+      }
+    ],
+    "totalHarga": 30000,
+    "status": "Selesai",
+    "waktuPesan": "2026-05-01T11:30:00",
+    "waktuSelesai": "2026-05-01T11:38:00",
+    "metodePembayaran": "Cash"
+  },
+  {
+    "id": "ORD011",
+    "memberId": "M007",
+    "namaPelanggan": "Gunawan Wijaya",
+    "items": [
+      {
+        "menu": "Americano",
+        "tingkatGula": "Less Sugar",
+        "harga": 25000,
+        "qty": 3
+      }
+    ],
+    "totalHarga": 75000,
+    "status": "Selesai",
+    "waktuPesan": "2026-05-01T08:15:00",
+    "waktuSelesai": "2026-05-01T08:25:00",
+    "metodePembayaran": "Debit Card"
+  },
+  {
+    "id": "ORD012",
+    "memberId": "M012",
+    "namaPelanggan": "Lina Marlina",
+    "items": [
+      {
+        "menu": "Green Tea Latte",
+        "tingkatGula": "Normal",
+        "harga": 28000,
+        "qty": 1
+      },
+      {
+        "menu": "Donut",
+        "tingkatGula": "-",
+        "harga": 15000,
+        "qty": 1
+      }
+    ],
+    "totalHarga": 43000,
+    "status": "Selesai",
+    "waktuPesan": "2026-04-30T13:45:00",
+    "waktuSelesai": "2026-04-30T13:53:00",
+    "metodePembayaran": "QRIS"
+  }
+]

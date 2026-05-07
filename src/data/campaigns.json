@@ -1,0 +1,110 @@
+[
+  {
+    "id": "CMP001",
+    "nama": "Senin Hemat",
+    "deskripsi": "Diskon 15% untuk semua minuman setiap hari Senin",
+    "targetSegmen": "Semua Member",
+    "diskon": "15%",
+    "tanggalMulai": "2026-05-05",
+    "tanggalSelesai": "2026-12-31",
+    "status": "Aktif",
+    "jumlahPengguna": 148,
+    "estimasiJangkauan": 450
+  },
+  {
+    "id": "CMP002",
+    "nama": "Weekend Bundle",
+    "deskripsi": "Beli 2 minuman gratis 1 topping setiap akhir pekan",
+    "targetSegmen": "Pelanggan Aktif",
+    "diskon": "Gratis Topping",
+    "tanggalMulai": "2026-05-03",
+    "tanggalSelesai": "2026-05-31",
+    "status": "Aktif",
+    "jumlahPengguna": 87,
+    "estimasiJangkauan": 230
+  },
+  {
+    "id": "CMP003",
+    "nama": "VIP Exclusive",
+    "deskripsi": "Extra 50 poin untuk setiap transaksi khusus member VIP",
+    "targetSegmen": "Pelanggan VIP",
+    "diskon": "+50 Poin",
+    "tanggalMulai": "2026-04-01",
+    "tanggalSelesai": "2026-06-30",
+    "status": "Aktif",
+    "jumlahPengguna": 42,
+    "estimasiJangkauan": 85
+  },
+  {
+    "id": "CMP004",
+    "nama": "Birthday Treat",
+    "deskripsi": "Minuman gratis untuk member yang berulang tahun",
+    "targetSegmen": "Semua Member",
+    "diskon": "1 Minuman Gratis",
+    "tanggalMulai": "2026-01-01",
+    "tanggalSelesai": "2026-12-31",
+    "status": "Aktif",
+    "jumlahPengguna": 28,
+    "estimasiJangkauan": 450
+  },
+  {
+    "id": "CMP005",
+    "nama": "Welcome New Member",
+    "deskripsi": "Diskon 20% untuk transaksi pertama member baru",
+    "targetSegmen": "Pelanggan Baru",
+    "diskon": "20%",
+    "tanggalMulai": "2026-04-15",
+    "tanggalSelesai": "2026-06-30",
+    "status": "Aktif",
+    "jumlahPengguna": 35,
+    "estimasiJangkauan": 120
+  },
+  {
+    "id": "CMP006",
+    "nama": "Comeback Promo",
+    "deskripsi": "Voucher Rp 15.000 untuk pelanggan yang sudah lama tidak berkunjung",
+    "targetSegmen": "Pelanggan Tidur",
+    "diskon": "Rp 15.000",
+    "tanggalMulai": "2026-05-01",
+    "tanggalSelesai": "2026-05-31",
+    "status": "Aktif",
+    "jumlahPengguna": 12,
+    "estimasiJangkauan": 95
+  },
+  {
+    "id": "CMP007",
+    "nama": "Ramadan Special",
+    "deskripsi": "Paket buka puasa dengan harga spesial",
+    "targetSegmen": "Semua Member",
+    "diskon": "25%",
+    "tanggalMulai": "2026-03-01",
+    "tanggalSelesai": "2026-04-01",
+    "status": "Selesai",
+    "jumlahPengguna": 276,
+    "estimasiJangkauan": 450
+  },
+  {
+    "id": "CMP008",
+    "nama": "Flash Sale Friday",
+    "deskripsi": "Diskon 30% untuk 50 pembeli pertama setiap Jumat pukul 10:00",
+    "targetSegmen": "Pelanggan Aktif",
+    "diskon": "30%",
+    "tanggalMulai": "2026-05-09",
+    "tanggalSelesai": "2026-05-30",
+    "status": "Terjadwal",
+    "jumlahPengguna": 0,
+    "estimasiJangkauan": 230
+  },
+  {
+    "id": "CMP009",
+    "nama": "Student Discount",
+    "deskripsi": "Diskon 10% untuk pelajar dan mahasiswa dengan menunjukkan kartu pelajar",
+    "targetSegmen": "Semua Member",
+    "diskon": "10%",
+    "tanggalMulai": "2026-06-01",
+    "tanggalSelesai": "2026-08-31",
+    "status": "Terjadwal",
+    "jumlahPengguna": 0,
+    "estimasiJangkauan": 450
+  }
+]
