@@ -14,6 +14,8 @@ const CampaignsPage = lazy(() => import("./pages/CampaignsPage"));
 const QueuePage = lazy(() => import("./pages/QueuePage"));
 const FeedbackPage = lazy(() => import("./pages/FeedbackPage"));
 const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
+const Products = lazy(() => import("./pages/Products"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 
 // Lazy loading halaman auth
 const Login = lazy(() => import("./pages/auth/Login"));
@@ -42,6 +44,8 @@ export default function App() {
           <Route path="/queue" element={<QueuePage />} />
           <Route path="/feedback" element={<FeedbackPage />} />
           <Route path="/analytics" element={<AnalyticsPage />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
         </Route>
       </Routes>
     </Suspense>

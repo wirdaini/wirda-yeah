@@ -8,12 +8,14 @@ import {
   Megaphone,
   Clock,
   MessageSquare,
-  BarChart3
+  BarChart3,
+  Coffee
 } from "lucide-react";
 
 const menuItems = [
   { path: "/", name: "Dashboard", icon: LayoutDashboard },
   { path: "/members", name: "Members", icon: Users },
+  { path: "/products", name: "Products", icon: Coffee },
   { path: "/orders", name: "Orders", icon: ShoppingCart },
   { path: "/loyalty", name: "Loyalty", icon: Gift },
   { path: "/segmentation", name: "Segmentation", icon: PieChart },

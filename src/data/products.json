@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "title": "Espresso",
+    "code": "CF001",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 18000,
+    "stock": 12,
+    "image": "https://images.unsplash.com/photo-1511920170033-f8396924c348"
+  },
+  {
+    "id": 2,
+    "title": "Americano",
+    "code": "CF002",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 22000,
+    "stock": 10,
+    "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"
+  },
+  {
+    "id": 3,
+    "title": "Cappuccino",
+    "code": "CF003",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 25000,
+    "stock": 8,
+    "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+  },
+  {
+    "id": 4,
+    "title": "Caramel Latte",
+    "code": "CF004",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 28000,
+    "stock": 15,
+    "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735"
+  },
+  {
+    "id": 5,
+    "title": "Vanilla Latte",
+    "code": "CF005",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 28000,
+    "stock": 11,
+    "image": "https://images.unsplash.com/photo-1523942839745-7848d9c7e8a1"
+  },
+  {
+    "id": 6,
+    "title": "Hazelnut Latte",
+    "code": "CF006",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 30000,
+    "stock": 9,
+    "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd"
+  },
+  {
+    "id": 7,
+    "title": "Mocha",
+    "code": "CF007",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 32000,
+    "stock": 7,
+    "image": "https://images.unsplash.com/photo-1498804103079-a6351b050096"
+  },
+  {
+    "id": 8,
+    "title": "Affogato",
+    "code": "CF008",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 35000,
+    "stock": 5,
+    "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187"
+  },
+  {
+    "id": 9,
+    "title": "Matcha Latte",
+    "code": "CF009",
+    "category": "Non Coffee",
+    "brand": "Papi Coffee",
+    "price": 27000,
+    "stock": 14,
+    "image": "https://images.unsplash.com/photo-1515823064-d6e0c04616a7"
+  },
+  {
+    "id": 10,
+    "title": "Chocolate",
+    "code": "CF010",
+    "category": "Non Coffee",
+    "brand": "Papi Coffee",
+    "price": 25000,
+    "stock": 10,
+    "image": "https://images.unsplash.com/photo-1511381939415-e44015466834"
+  },
+  {
+    "id": 11,
+    "title": "Red Velvet",
+    "code": "CF011",
+    "category": "Non Coffee",
+    "brand": "Papi Coffee",
+    "price": 29000,
+    "stock": 12,
+    "image": "https://images.unsplash.com/photo-1551024601-bec78aea704b"
+  },
+  {
+    "id": 12,
+    "title": "Thai Tea",
+    "code": "CF012",
+    "category": "Tea",
+    "brand": "Papi Coffee",
+    "price": 24000,
+    "stock": 8,
+    "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"
+  },
+  {
+    "id": 13,
+    "title": "Lemon Tea",
+    "code": "CF013",
+    "category": "Tea",
+    "brand": "Papi Coffee",
+    "price": 20000,
+    "stock": 13,
+    "image": "https://images.unsplash.com/photo-1464306076886-da185f6a9d05"
+  },
+  {
+    "id": 14,
+    "title": "Green Tea",
+    "code": "CF014",
+    "category": "Tea",
+    "brand": "Papi Coffee",
+    "price": 21000,
+    "stock": 9,
+    "image": "https://images.unsplash.com/photo-1517705008128-361805f42e86"
+  },
+  {
+    "id": 15,
+    "title": "Croissant",
+    "code": "CF015",
+    "category": "Snack",
+    "brand": "Papi Coffee",
+    "price": 18000,
+    "stock": 6,
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff"
+  },
+  {
+    "id": 16,
+    "title": "French Fries",
+    "code": "CF016",
+    "category": "Snack",
+    "brand": "Papi Coffee",
+    "price": 22000,
+    "stock": 15,
+    "image": "https://images.unsplash.com/photo-1576107232684-1279f390859f"
+  },
+  {
+    "id": 17,
+    "title": "Onion Rings",
+    "code": "CF017",
+    "category": "Snack",
+    "brand": "Papi Coffee",
+    "price": 23000,
+    "stock": 11,
+    "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec"
+  },
+  {
+    "id": 18,
+    "title": "Cheese Cake",
+    "code": "CF018",
+    "category": "Dessert",
+    "brand": "Papi Coffee",
+    "price": 32000,
+    "stock": 7,
+    "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad"
+  },
+  {
+    "id": 19,
+    "title": "Tiramisu",
+    "code": "CF019",
+    "category": "Dessert",
+    "brand": "Papi Coffee",
+    "price": 35000,
+    "stock": 5,
+    "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9"
+  },
+  {
+    "id": 20,
+    "title": "Brownies",
+    "code": "CF020",
+    "category": "Dessert",
+    "brand": "Papi Coffee",
+    "price": 28000,
+    "stock": 12,
+    "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c"
+  },
+  {
+    "id": 21,
+    "title": "Ice Coffee Milk",
+    "code": "CF021",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 26000,
+    "stock": 10,
+    "image": "https://images.unsplash.com/photo-1517701604599-bb29b565090c"
+  },
+  {
+    "id": 22,
+    "title": "Cold Brew",
+    "code": "CF022",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 30000,
+    "stock": 6,
+    "image": "https://images.unsplash.com/photo-1461988320302-91bde64fc8e4"
+  },
+  {
+    "id": 23,
+    "title": "Coffee Jelly",
+    "code": "CF023",
+    "category": "Coffee",
+    "brand": "Papi Coffee",
+    "price": 27000,
+    "stock": 9,
+    "image": "https://images.unsplash.com/photo-1517701550927-30cf4ba1fdfd"
+  },
+  {
+    "id": 24,
+    "title": "Lychee Tea",
+    "code": "CF024",
+    "category": "Tea",
+    "brand": "Papi Coffee",
+    "price": 24000,
+    "stock": 14,
+    "image": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e"
+  },
+  {
+    "id": 25,
+    "title": "Peach Tea",
+    "code": "CF025",
+    "category": "Tea",
+    "brand": "Papi Coffee",
+    "price": 25000,
+    "stock": 10,
+    "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd"
+  },
+  {
+    "id": 26,
+    "title": "Chicken Wings",
+    "code": "CF026",
+    "category": "Snack",
+    "brand": "Papi Coffee",
+    "price": 35000,
+    "stock": 7,
+    "image": "https://images.unsplash.com/photo-1562967916-eb82221dfb92"
+  },
+  {
+    "id": 27,
+    "title": "Toast Bread",
+    "code": "CF027",
+    "category": "Snack",
+    "brand": "Papi Coffee",
+    "price": 20000,
+    "stock": 11,
+    "image": "https://images.unsplash.com/photo-1484723091739-30a097e8f929"
+  },
+  {
+    "id": 28,
+    "title": "Pancake",
+    "code": "CF028",
+    "category": "Dessert",
+    "brand": "Papi Coffee",
+    "price": 33000,
+    "stock": 5,
+    "image": "https://images.unsplash.com/photo-1528207776546-365bb710ee93"
+  },
+  {
+    "id": 29,
+    "title": "Waffle Ice Cream",
+    "code": "CF029",
+    "category": "Dessert",
+    "brand": "Papi Coffee",
+    "price": 36000,
+    "stock": 8,
+    "image": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0"
+  },
+  {
+    "id": 30,
+    "title": "Mineral Water",
+    "code": "CF030",
+    "category": "Drink",
+    "brand": "Papi Coffee",
+    "price": 10000,
+    "stock": 20,
+    "image": "https://images.unsplash.com/photo-1564419320408-38e24e0383f4"
+  }
+]
