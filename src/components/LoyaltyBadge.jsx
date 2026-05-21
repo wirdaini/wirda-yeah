@@ -1,39 +1,29 @@
-export default function LoyaltyBadge({ tier, poin, targetPoin = 50 }) {
-  const progress = (poin / targetPoin) * 100;
+// src/components/LoyaltyBadge.jsx (UPDATE)
+import { Award, Coffee, Gift } from "lucide-react";
 
+export default function LoyaltyBadge({ tier, poin }) {
+  const nextTierNeeded = tier === "Regular" ? 50 - poin : 0;
+  
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4">
-      <div className="flex items-center justify-between mb-3">
-        <span
-          className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-            tier === "VIP"
-              ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white"
-              : "bg-gray-100 text-gray-800"
-          }`}
-        >
-          {tier === "VIP" ? "⭐ " : ""}
-          {tier}
-        </span>
-        <span className="text-sm font-semibold text-gray-900">{poin} Poin</span>
-      </div>
-
-      <div className="space-y-2">
-        <div className="flex justify-between text-xs text-gray-600">
-          <span>Progress ke reward</span>
-          <span>{Math.min(100, Math.round(progress))}%</span>
+    <div className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl p-4 border border-amber-200">
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <Award className="w-5 h-5 text-amber-600" />
+          <span className="font-bold text-gray-900">{tier}</span>
         </div>
-        <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-          <div
-            className="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full transition-all duration-300"
-            style={{ width: `${Math.min(100, progress)}%` }}
-          />
+        <div className="flex items-center gap-1">
+          <Coffee className="w-4 h-4 text-amber-600" />
+          <span className="text-sm font-semibold text-amber-700">{poin} poin</span>
         </div>
-        <p className="text-xs text-gray-500">
-          {poin >= targetPoin
-            ? "Poin cukup untuk ditukar!"
-            : `${targetPoin - poin} poin lagi untuk reward`}
-        </p>
       </div>
+      {tier === "Regular" && poin < 50 && (
+        <div className="mt-2">
+          <div className="w-full h-2 bg-amber-200 rounded-full overflow-hidden">
+            <div className="h-full bg-amber-600 rounded-full" style={{ width: `${(poin / 50) * 100}%` }} />
+          </div>
+          <p className="text-xs text-amber-700 mt-1">{nextTierNeeded} poin lagi ke VIP</p>
+        </div>
+      )}
     </div>
   );
 }

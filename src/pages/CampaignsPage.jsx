@@ -1,16 +1,17 @@
+// src/pages/CampaignsPage.jsx
 import { Plus, Filter } from "lucide-react";
 import CampaignCard from "../components/CampaignCard";
 import campaignsData from "../data/campaigns.json";
 import { useState } from "react";
 import PageHeader from "../components/PageHeader";
+import Button from "../components/Button";
+import StatCard from "../components/StatCard";
+import Badge from "../components/Badge";
 
 export default function CampaignsPage() {
   const [filter, setFilter] = useState("Semua");
 
-  const filteredCampaigns =
-    filter === "Semua"
-      ? campaignsData
-      : campaignsData.filter((c) => c.status === filter);
+  const filteredCampaigns = filter === "Semua" ? campaignsData : campaignsData.filter((c) => c.status === filter);
 
   const statusCounts = {
     Aktif: campaignsData.filter((c) => c.status === "Aktif").length,
@@ -21,37 +22,18 @@ export default function CampaignsPage() {
   return (
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
-      
-<PageHeader 
-  title="Campaign & Promo" 
-  subtitle="Kelola kampanye marketing dan promosi" 
-  breadcrumb="Campaign & Promo"
-
-/>
-        
-        <button className="flex items-center gap-2 px-4 py-2.5 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-all shadow-sm">
+        <PageHeader title="Campaign & Promo" subtitle="Kelola kampanye marketing dan promosi" breadcrumb="Campaign & Promo" />
+        <Button type="primary" className="flex items-center gap-2">
           <Plus className="w-4 h-4" />
-          <span className="text-sm font-medium">Buat Kampanye</span>
-        </button>
+          Buat Kampanye
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-1">Total Kampanye</p>
-          <h3 className="text-3xl font-bold text-gray-900">{campaignsData.length}</h3>
-        </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-1">Aktif</p>
-          <h3 className="text-3xl font-bold text-green-600">{statusCounts.Aktif}</h3>
-        </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-1">Terjadwal</p>
-          <h3 className="text-3xl font-bold text-blue-600">{statusCounts.Terjadwal}</h3>
-        </div>
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-1">Selesai</p>
-          <h3 className="text-3xl font-bold text-gray-600">{statusCounts.Selesai}</h3>
-        </div>
+        <StatCard label="Total Kampanye" value={campaignsData.length} icon={null} color="gray" />
+        <StatCard label="Aktif" value={statusCounts.Aktif} icon={null} color="green" />
+        <StatCard label="Terjadwal" value={statusCounts.Terjadwal} icon={null} color="blue" />
+        <StatCard label="Selesai" value={statusCounts.Selesai} icon={null} color="gray" />
       </div>
 
       <div className="flex items-center gap-3">
@@ -61,11 +43,7 @@ export default function CampaignsPage() {
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                filter === status
-                  ? "bg-amber-600 text-white"
-                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
-              }`}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${filter === status ? "bg-amber-600 text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"}`}
             >
               {status}
             </button>
