@@ -1,8 +1,9 @@
 // src/components/MemberTable.jsx
 import Badge from "./Badge";
 import Avatar from "./Avatar";
+import { Eye } from "lucide-react";
 
-export default function MemberTable({ members }) {
+export default function MemberTable({ members, onViewDetail }) {
   return (
     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
       <div className="overflow-x-auto">
@@ -14,6 +15,7 @@ export default function MemberTable({ members }) {
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Poin</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Transaksi</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Segmen</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Aksi</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -33,10 +35,19 @@ export default function MemberTable({ members }) {
                 <td className="px-4 py-3">
                   <Badge type="info">{member.segmen}</Badge>
                 </td>
-              </tr>
+                <td className="px-4 py-3">
+                  <button
+                    onClick={() => onViewDetail(member)}
+                    className="text-amber-600 hover:text-amber-700 flex items-center gap-1 text-sm transition-colors"
+                  >
+                    <Eye className="w-4 h-4" />
+                    Detail
+                  </button>
+                </td>
+               </tr>
             ))}
           </tbody>
-        </table>
+         </table>
       </div>
     </div>
   );
