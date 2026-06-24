@@ -7,13 +7,17 @@ export default function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -22,15 +26,24 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await axios.post("https://dummyjson.com/auth/login", {
-        username: formData.username,
-        password: formData.password,
-      });
+      const response = await axios.get(
+        `https://jyeezagvihgqbacavape.supabase.co/rest/v1/users?email=eq.${formData.email}&password=eq.${formData.password}`,
+        {
+          headers: {
+            apikey: "sb_publishable_RJLMCC0pcLUtSvOO8i6RIQ_8EsbO7Zo",
+            "Content-Type": "application/json",
+          },
+        },
+      );
 
-      if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data));
+      if (response.data.length > 0) {
+        localStorage.setItem("user", JSON.stringify(response.data[0]));
+
+        localStorage.setItem("token", "login-success");
+
         navigate("/");
+      } else {
+        setError("Email atau password salah");
       }
     } catch (err) {
       setError(err.response?.data?.message || "Login gagal");
@@ -46,9 +59,11 @@ export default function Login() {
           <div className="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-700 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
             <Coffee className="w-8 h-8 text-white" />
           </div>
+
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             Papi Coffee CRM
           </h1>
+
           <p className="text-sm text-gray-600">
             Silakan login untuk melanjutkan
           </p>
@@ -69,16 +84,18 @@ export default function Login() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Username
+              Email
             </label>
+
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+
               <input
                 type="text"
-                name="username"
-                value={formData.username}
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
-                placeholder="Masukkan username"
+                placeholder="Masukkan email"
                 className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 required
               />
@@ -89,8 +106,10 @@ export default function Login() {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Password
             </label>
+
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+
               <input
                 type="password"
                 name="password"

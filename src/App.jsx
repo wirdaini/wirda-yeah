@@ -1,8 +1,11 @@
+// src/App.jsx
+
 import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import AuthLayout from "./layouts/AuthLayout";
 import MainLayout from "./layouts/MainLayout";
 import Loading from "./components/Loading";
+import ProtectedRoute from "./components/ProtectedRoute"; 
 
 // Lazy loading halaman utama
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
@@ -16,6 +19,7 @@ const FeedbackPage = lazy(() => import("./pages/FeedbackPage"));
 const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
 const Products = lazy(() => import("./pages/Products"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const UsersPage = lazy(() => import("./pages/UsersPage"));
 
 // Lazy loading halaman auth
 const Login = lazy(() => import("./pages/auth/Login"));
@@ -33,20 +37,23 @@ export default function App() {
           <Route path="/forgot" element={<Forgot />} />
         </Route>
 
-        {/* Main Layout - halaman utama dengan sidebar */}
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/members" element={<MembersPage />} />
-          <Route path="/orders" element={<OrdersPage />} />
-          <Route path="/loyalty" element={<LoyaltyPage />} />
-          <Route path="/segmentation" element={<SegmentationPage />} />
-          <Route path="/campaigns" element={<CampaignsPage />} />
-          <Route path="/queue" element={<QueuePage />} />
-          <Route path="/feedback" element={<FeedbackPage />} />
-          <Route path="/analytics" element={<AnalyticsPage />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-        </Route>
+        {/* PERBAIKI: BUNGKUS DENGAN ProtectedRoute! */}
+        <Route element={<ProtectedRoute />}>   {/* ← TAMBAHKAN INI! */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<DashboardPage />} />
+            <Route path="/users" element={<UsersPage />} /> 
+            <Route path="/members" element={<MembersPage />} />
+            <Route path="/orders" element={<OrdersPage />} />
+            <Route path="/loyalty" element={<LoyaltyPage />} />
+            <Route path="/segmentation" element={<SegmentationPage />} />
+            <Route path="/campaigns" element={<CampaignsPage />} />
+            <Route path="/queue" element={<QueuePage />} />
+            <Route path="/feedback" element={<FeedbackPage />} />
+            <Route path="/analytics" element={<AnalyticsPage />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
+          </Route>
+        </Route>   {/* ← TUTUP ProtectedRoute */}
       </Routes>
     </Suspense>
   );
