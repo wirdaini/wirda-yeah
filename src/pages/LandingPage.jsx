@@ -1,7 +1,26 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Award, Coffee, ShieldCheck, Sparkles, Users } from "lucide-react";
 
 export default function LandingPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    birth: "",
+    sugar: "Normal",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert("Terima kasih! Silakan lanjut ke halaman pendaftaran untuk menyelesaikan registrasi.");
+  };
+
   return (
     <div className="min-h-screen bg-[#FFF8E5] text-[#2B1B12]">
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-amber-100 shadow-sm">
@@ -202,6 +221,115 @@ export default function LandingPage() {
               <p className="text-sm leading-7">“Dashboard loyalty-nya sederhana tapi informatif. Saya tahu kapan bisa naik ke Platinum.”</p>
               <p className="mt-6 font-semibold">Maya, Member Platinum</p>
             </div>
+          </div>
+        </section>
+
+        <section id="cara-kerja" className="mt-24 space-y-12">
+          <div className="text-center">
+            <p className="text-sm uppercase tracking-[0.3em] text-amber-600">Cara Kerja</p>
+            <h2 className="mt-4 text-3xl font-semibold text-[#2B1B12] sm:text-4xl">3 langkah mudah untuk mulai kumpulkan poin</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#5F4B3F]">
+              Daftar, kumpulkan transaksi, dan tukarkan reward kopimu. Sistem kami membantu member tumbuh dari Silver ke Platinum.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-[2rem] border border-amber-100 bg-white p-8 shadow-sm shadow-amber-100">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-amber-700">1. Daftar</p>
+              <h3 className="mt-4 text-xl font-semibold text-[#2B1B12]">Buat akun member</h3>
+              <p className="mt-3 text-sm leading-7 text-[#5F4B3F]">Isi data singkat dan mulai kumpulkan poin dari transaksi pertama.</p>
+            </div>
+            <div className="rounded-[2rem] border border-amber-100 bg-white p-8 shadow-sm shadow-amber-100">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-amber-700">2. Kumpulkan poin</p>
+              <h3 className="mt-4 text-xl font-semibold text-[#2B1B12]">Setiap Rp10.000 = 1 poin</h3>
+              <p className="mt-3 text-sm leading-7 text-[#5F4B3F]">Poin otomatis tercatat di dashboard, jadi member bisa lihat progress naik tier.</p>
+            </div>
+            <div className="rounded-[2rem] border border-amber-100 bg-white p-8 shadow-sm shadow-amber-100">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-amber-700">3. Tukarkan reward</p>
+              <h3 className="mt-4 text-xl font-semibold text-[#2B1B12]">Gratis minuman setiap 50 poin</h3>
+              <p className="mt-3 text-sm leading-7 text-[#5F4B3F]">Tier lebih tinggi membuka lebih banyak promo, hadiah ulang tahun, dan prioritas pesanan.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="daftar" className="mt-24 rounded-[2rem] border border-amber-100 bg-white p-10 shadow-sm shadow-amber-100 sm:p-14">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_0.6fr] lg:items-center">
+            <div>
+              <p className="text-sm uppercase tracking-[0.3em] text-amber-600">Form Pendaftaran</p>
+              <h2 className="mt-4 text-3xl font-semibold text-[#2B1B12] sm:text-4xl">Daftar member dan mulai kumpulkan poin</h2>
+              <p className="mt-4 max-w-xl text-base leading-7 text-[#5F4B3F]">
+                Isi data singkat di bawah untuk mengamankan akun membermu dan nikmati loyalty program khusus Papi Coffee.
+              </p>
+            </div>
+            <form className="space-y-4 rounded-[2rem] border border-amber-100 bg-[#FFF8E5] p-6 shadow-sm shadow-amber-100" onSubmit={handleSubmit}>
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-[#2B1B12]">Nama Lengkap</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Contoh: Dita Rahma"
+                  className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                />
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-[#2B1B12]">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="email@contoh.com"
+                    className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                  />
+                </div>
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-[#2B1B12]">No. HP</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="0812xxxxxxx"
+                    className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                  />
+                </div>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-[#2B1B12]">Tanggal Lahir</label>
+                  <input
+                    type="date"
+                    name="birth"
+                    value={formData.birth}
+                    onChange={handleChange}
+                    className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                  />
+                </div>
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-[#2B1B12]">Preferensi Gula</label>
+                  <select
+                    name="sugar"
+                    value={formData.sugar}
+                    onChange={handleChange}
+                    className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                  >
+                    <option>No Sugar</option>
+                    <option>Less Sugar</option>
+                    <option>Normal</option>
+                    <option>Extra Sugar</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="w-full rounded-full bg-[#E8963B] px-6 py-3 text-sm font-semibold text-white shadow-md shadow-amber-300 transition hover:bg-[#c27a2e]"
+              >
+                Kirim Pendaftaran
+              </button>
+            </form>
           </div>
         </section>
 
