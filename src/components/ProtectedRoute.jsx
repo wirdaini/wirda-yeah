@@ -1,29 +1,18 @@
 // src/components/ProtectedRoute.jsx
 
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function ProtectedRoute() {
-  // === STATE UNTUK LOADING & AUTHENTICATED ===
+  // Tetap pakai state agar struktur komponen tidak banyak berubah
   const [loading, setLoading] = useState(true);
-  const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    const checkAuth = () => {
-      // ambil data user hasil login
-      const user = localStorage.getItem("user");
-
-      // kalau tidak ada user berarti belum login
-      if (!user) {
-        setAuthenticated(false);
-      } else {
-        setAuthenticated(true);
-      }
-      setLoading(false);
-    };
-    checkAuth();
+    // Langsung selesai loading tanpa cek login
+    setLoading(false);
   }, []);
-  // === TAMPILKAN LOADING ===
+
+  // Loading
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -31,10 +20,7 @@ export default function ProtectedRoute() {
       </div>
     );
   }
-  // === BELUM LOGIN ===
-  if (!authenticated) {
-    return <Navigate to="/login" replace />;
-  }
-  // === SUDAH LOGIN ===
+
+  // Langsung izinkan akses ke semua halaman yang diproteksi
   return <Outlet />;
 }

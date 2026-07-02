@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Mail, Lock, User, Coffee } from "lucide-react";
-import axios from "axios";
+import { usersAPI } from "../../services/usersAPI";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -37,36 +37,24 @@ export default function Register() {
     }
 
     try {
-      const response = await axios.post(
-        "https://jyeezagvihgqbacavape.supabase.co/rest/v1/users",
-        {
-          full_name: formData.full_name,
-          email: formData.email,
-          password: formData.password,
-        },
-        {
-          headers: {
-            apikey: "sb_publishable_RJLMCC0pcLUtSvOO8i6RIQ_8EsbO7Zo",
-            Authorization:
-              "Bearer sb_publishable_RJLMCC0pcLUtSvOO8i6RIQ_8EsbO7Zo",
-            "Content-Type": "application/json",
-            Prefer: "return=representation",
-          },
-        },
-      );
+      await usersAPI.createUser({
+        full_name: formData.full_name,
+        email: formData.email,
+        password: formData.password,
+        role: "member",
+        poin: 0,
+        tier: "Silver",
+        segmen: "Pelanggan Baru",
+      });
 
-      if (response.status >= 200 && response.status < 300) {
-  alert("Registrasi berhasil! Silakan login.");
-  
-  setFormData({
-    full_name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  navigate("/login");
-}
+      alert("Registrasi berhasil! Silakan login.");
+      setFormData({
+        full_name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+      navigate("/login");
     } catch (err) {
       console.log(err.response?.data);
 

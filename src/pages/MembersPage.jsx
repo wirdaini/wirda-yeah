@@ -2,6 +2,7 @@
 import { useState } from "react";
 import MemberTable from "../components/MemberTable";
 import membersData from "../data/members.json";
+import { getLoyaltyTier } from "../lib/utils";
 import { Users, UserPlus, Crown, User, Mail, Phone, Calendar, MapPin, X } from "lucide-react";
 import PageHeader from "../components/PageHeader";
 import Button from "../components/Button";
@@ -21,8 +22,9 @@ export default function MembersPage() {
   const [selectedMember, setSelectedMember] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const vipCount = membersData.filter((m) => m.tier === "VIP").length;
-  const regularCount = membersData.filter((m) => m.tier === "Regular").length;
+  const silverCount = membersData.filter((m) => getLoyaltyTier(m.poin) === "Silver").length;
+  const goldCount = membersData.filter((m) => getLoyaltyTier(m.poin) === "Gold").length;
+  const platinumCount = membersData.filter((m) => getLoyaltyTier(m.poin) === "Platinum").length;
   const totalPoin = membersData.reduce((sum, m) => sum + (m.poin || 0), 0);
 
   const handleViewDetail = (member) => {
@@ -45,7 +47,7 @@ export default function MembersPage() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <StatCard
           label="Total Member"
           value={membersData.length}
@@ -53,17 +55,25 @@ export default function MembersPage() {
           color="blue"
         />
         <StatCard
-          label="VIP Members"
-          value={vipCount}
+          label="Silver Members"
+          value={silverCount}
+          icon={Users}
+          trend={`${Math.round((silverCount / membersData.length) * 100)}% dari total`}
+          color="blue"
+        />
+        <StatCard
+          label="Gold Members"
+          value={goldCount}
           icon={Crown}
-          trend={`${Math.round((vipCount / membersData.length) * 100)}% dari total`}
+          trend={`${Math.round((goldCount / membersData.length) * 100)}% dari total`}
           color="amber"
         />
         <StatCard
-          label="Total Poin"
-          value={totalPoin.toLocaleString("id-ID")}
-          icon={User}
-          color="gray"
+          label="Platinum Members"
+          value={platinumCount}
+          icon={Crown}
+          trend={`${Math.round((platinumCount / membersData.length) * 100)}% dari total`}
+          color="purple"
         />
       </div>
 
@@ -90,8 +100,16 @@ export default function MembersPage() {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">{selectedMember.nama}</h3>
                   <div className="flex gap-2 mt-1">
-                    <Badge type={selectedMember.tier === "VIP" ? "amber" : "default"}>
-                      {selectedMember.tier}
+                    <Badge
+                      type={
+                        getLoyaltyTier(selectedMember.poin) === "Gold"
+                          ? "amber"
+                          : getLoyaltyTier(selectedMember.poin) === "Platinum"
+                          ? "purple"
+                          : "default"
+                      }
+                    >
+                      {getLoyaltyTier(selectedMember.poin)}
                     </Badge>
                     <Badge type="info">{selectedMember.segmen}</Badge>
                   </div>

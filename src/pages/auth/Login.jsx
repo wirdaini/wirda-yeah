@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Mail, Lock, Coffee } from "lucide-react";
-import axios from "axios";
+import { usersAPI } from "../../services/usersAPI";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -26,22 +26,12 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await axios.get(
-        `https://jyeezagvihgqbacavape.supabase.co/rest/v1/users?email=eq.${formData.email}&password=eq.${formData.password}`,
-        {
-          headers: {
-            apikey: "sb_publishable_RJLMCC0pcLUtSvOO8i6RIQ_8EsbO7Zo",
-            "Content-Type": "application/json",
-          },
-        },
-      );
+      const response = await usersAPI.loginUser(formData.email, formData.password);
 
-      if (response.data.length > 0) {
-        localStorage.setItem("user", JSON.stringify(response.data[0]));
-
+      if (response.length > 0) {
+        localStorage.setItem("user", JSON.stringify(response[0]));
         localStorage.setItem("token", "login-success");
-
-        navigate("/");
+        navigate("/dashboard");
       } else {
         setError("Email atau password salah");
       }

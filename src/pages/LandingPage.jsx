@@ -1,11 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Award, Coffee, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { usersAPI } from "../services/usersAPI";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    password: "",
+    confirmPassword: "",
     phone: "",
     birth: "",
     sugar: "Normal",
@@ -16,9 +22,36 @@ export default function LandingPage() {
     setFormData((current) => ({ ...current, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    alert("Terima kasih! Silakan lanjut ke halaman pendaftaran untuk menyelesaikan registrasi.");
+    setError("");
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Password dan konfirmasi password tidak cocok.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await usersAPI.createUser({
+        full_name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        phone: formData.phone,
+        birth: formData.birth,
+        sugar: formData.sugar,
+        role: "member",
+        poin: 0,
+        tier: "Silver",
+        segmen: "Pelanggan Baru",
+      });
+      alert("Pendaftaran berhasil! Silakan login untuk masuk ke dashboard.");
+      navigate("/login");
+    } catch (err) {
+      setError(err.response?.data?.message || err.message || "Gagal mendaftar.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -43,12 +76,18 @@ export default function LandingPage() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <button className="rounded-full border border-amber-200 bg-white px-4 py-2 text-sm font-semibold text-[#2B1B12] transition hover:bg-amber-50">
+            <Link
+              to="/login"
+              className="rounded-full border border-amber-200 bg-white px-4 py-2 text-sm font-semibold text-[#2B1B12] transition hover:bg-amber-50"
+            >
               Masuk
-            </button>
-            <button className="rounded-full bg-[#E8963B] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-amber-300 transition hover:bg-[#c27a2e]">
+            </Link>
+            <Link
+              to="/register"
+              className="rounded-full bg-[#E8963B] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-amber-300 transition hover:bg-[#c27a2e]"
+            >
               Daftar Sekarang
-            </button>
+            </Link>
           </div>
         </div>
       </header>
@@ -262,6 +301,11 @@ export default function LandingPage() {
               </p>
             </div>
             <form className="space-y-4 rounded-[2rem] border border-amber-100 bg-[#FFF8E5] p-6 shadow-sm shadow-amber-100" onSubmit={handleSubmit}>
+              {error && (
+                <div className="rounded-3xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+                  {error}
+                </div>
+              )}
               <div>
                 <label className="mb-2 block text-sm font-semibold text-[#2B1B12]">Nama Lengkap</label>
                 <input
@@ -271,6 +315,7 @@ export default function LandingPage() {
                   onChange={handleChange}
                   placeholder="Contoh: Dita Rahma"
                   className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                  required
                 />
               </div>
               <div className="grid gap-4 md:grid-cols-2">
@@ -283,6 +328,7 @@ export default function LandingPage() {
                     onChange={handleChange}
                     placeholder="email@contoh.com"
                     className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                    required
                   />
                 </div>
                 <div>
@@ -294,6 +340,33 @@ export default function LandingPage() {
                     onChange={handleChange}
                     placeholder="0812xxxxxxx"
                     className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                  />
+                </div>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-[#2B1B12]">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Minimal 6 karakter"
+                    className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                    required
+                    minLength={6}
+                  />
+                </div>
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-[#2B1B12]">Confirm Password</label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    placeholder="Ulangi password"
+                    className="w-full rounded-2xl border border-amber-200 bg-white px-4 py-3 text-sm text-[#2B1B12] shadow-sm outline-none focus:border-amber-300"
+                    required
                   />
                 </div>
               </div>
@@ -325,9 +398,10 @@ export default function LandingPage() {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-full bg-[#E8963B] px-6 py-3 text-sm font-semibold text-white shadow-md shadow-amber-300 transition hover:bg-[#c27a2e]"
+                disabled={loading}
+                className="w-full rounded-full bg-[#E8963B] px-6 py-3 text-sm font-semibold text-white shadow-md shadow-amber-300 transition hover:bg-[#c27a2e] disabled:opacity-60"
               >
-                Kirim Pendaftaran
+                {loading ? "Memproses..." : "Kirim Pendaftaran"}
               </button>
             </form>
           </div>

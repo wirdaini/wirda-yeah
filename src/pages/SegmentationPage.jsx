@@ -1,5 +1,6 @@
 // src/pages/SegmentationPage.jsx
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { getLoyaltyTier } from "../lib/utils";
 import membersData from "../data/members.json";
 import PageHeader from "../components/PageHeader";
 import Card from "../components/Card";
@@ -96,7 +97,17 @@ export default function SegmentationPage() {
                   <tr key={member.id} className="hover:bg-gray-50">
                     <td className="px-4 py-3 text-sm font-medium text-gray-900">{member.nama}</td>
                     <td className="px-4 py-3">
-                      <Badge type={member.tier === "VIP" ? "amber" : "default"}>{member.tier}</Badge>
+                      <Badge
+                        type={
+                          getLoyaltyTier(member.poin) === "Gold"
+                            ? "amber"
+                            : getLoyaltyTier(member.poin) === "Platinum"
+                            ? "purple"
+                            : "default"
+                        }
+                      >
+                        {getLoyaltyTier(member.poin)}
+                      </Badge>
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-900">{member.poin}</td>
                     <td className="px-4 py-3 text-sm text-gray-900">Rp {member.totalTransaksi.toLocaleString("id-ID")}</td>

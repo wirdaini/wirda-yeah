@@ -1,6 +1,7 @@
 // src/pages/LoyaltyPage.jsx
 import { Gift, Award, TrendingUp } from "lucide-react";
 import LoyaltyBadge from "../components/LoyaltyBadge";
+import { getLoyaltyTier } from "../lib/utils";
 import membersData from "../data/members.json";
 import PageHeader from "../components/PageHeader";
 import StatCard from "../components/StatCard";
@@ -66,17 +67,20 @@ export default function LoyaltyPage() {
       <Card>
         <h3 className="font-semibold text-gray-900 mb-4">Poin Per Member</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {membersData.sort((a, b) => b.poin - a.poin).slice(0, 12).map((member) => (
-            <div key={member.id}>
-              <div className="mb-2">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-medium text-gray-900">{member.nama}</span>
-                  <span className="text-xs text-gray-600">{member.tier}</span>
+          {membersData.sort((a, b) => b.poin - a.poin).slice(0, 12).map((member) => {
+            const tier = getLoyaltyTier(member.poin);
+            return (
+              <div key={member.id}>
+                <div className="mb-2">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-sm font-medium text-gray-900">{member.nama}</span>
+                    <span className="text-xs text-gray-600">{tier}</span>
+                  </div>
                 </div>
+                <LoyaltyBadge poin={member.poin} />
               </div>
-              <LoyaltyBadge tier={member.tier} poin={member.poin} />
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Card>
     </div>

@@ -8,11 +8,20 @@ const headers = {
   apikey: API_KEY,
   Authorization: `Bearer ${API_KEY}`,
   'Content-Type': 'application/json',
+  Prefer: 'return=representation',
 }
 
 export const usersAPI = {
   async fetchUsers() {
     const response = await axios.get(API_URL, { headers })
+    return response.data
+  },
+
+  async loginUser(email, password) {
+    const response = await axios.get(
+      `${API_URL}?email=eq.${email}&password=eq.${password}`,
+      { headers }
+    )
     return response.data
   },
 
