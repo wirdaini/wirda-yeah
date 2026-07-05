@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   LayoutDashboard,
@@ -32,6 +32,7 @@ const menuItems = [
 
 export default function Sidebar() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
@@ -105,7 +106,10 @@ export default function Sidebar() {
 
       {/* User Profile Section */}
       <div className="p-4 border-t border-coffee-200">
-        <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-coffee-50 transition-all cursor-pointer">
+        <div
+          onClick={() => navigate("/profile")}
+          className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-coffee-50 transition-all cursor-pointer"
+        >
 
           <div className="w-9 h-9 rounded-full bg-coffee-100 flex items-center justify-center text-coffee-700 text-sm font-medium shadow-sm">
             {user?.full_name

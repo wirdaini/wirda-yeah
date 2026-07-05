@@ -24,7 +24,11 @@ export default function Header() {
         </button>
 
         <button
-          onClick={() => navigate("/login")}
+          onClick={() => {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            navigate("/login");
+          }}
           className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg transition-all text-sm font-medium"
         >
           <LogOut className="w-4 h-4" />

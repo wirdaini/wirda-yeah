@@ -21,6 +21,7 @@ const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage"));
 const Products = lazy(() => import("./pages/Products"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const UsersPage = lazy(() => import("./pages/UsersPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 
 // Lazy loading halaman auth
 const Login = lazy(() => import("./pages/auth/Login"));
@@ -63,6 +64,7 @@ export default function App() {
             <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetail />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Route>   {/* ← TUTUP ProtectedRoute */}
       </Routes>
