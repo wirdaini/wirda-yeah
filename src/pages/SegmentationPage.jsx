@@ -34,7 +34,7 @@ export default function SegmentationPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
-          <h3 className="font-semibold text-gray-900 mb-4">Distribusi Segmen</h3>
+          <h3 className="font-semibold text-coffee-900 mb-4">Distribusi Segmen</h3>
           <ResponsiveContainer width="100%" height={350}>
             <PieChart>
               <Pie data={pieData} cx="50%" cy="50%" labelLine={false} label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`} outerRadius={120} dataKey="value">
@@ -46,26 +46,26 @@ export default function SegmentationPage() {
         </Card>
 
         <Card>
-          <h3 className="font-semibold text-gray-900 mb-4">Ringkasan Segmen</h3>
+          <h3 className="font-semibold text-coffee-900 mb-4">Ringkasan Segmen</h3>
           <div className="space-y-4">
             {segmentDetails.map((detail) => (
-              <div key={detail.segmen} className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-all">
+              <div key={detail.segmen} className="p-4 border border-coffee-200 rounded-lg hover:shadow-md transition-all">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[detail.segmen] || "#8884d8" }} />
-                  <h4 className="font-semibold text-gray-900">{detail.segmen}</h4>
+                  <h4 className="font-semibold text-coffee-900">{detail.segmen}</h4>
                 </div>
                 <div className="grid grid-cols-3 gap-4 text-sm">
                   <div>
-                    <p className="text-gray-600">Jumlah</p>
-                    <p className="font-semibold text-gray-900">{detail.count} member</p>
+                    <p className="text-coffee-600">Jumlah</p>
+                    <p className="font-semibold text-coffee-900">{detail.count} member</p>
                   </div>
                   <div>
-                    <p className="text-gray-600">Total Transaksi</p>
-                    <p className="font-semibold text-gray-900">Rp {(detail.totalTransaksi / 1000).toFixed(0)}K</p>
+                    <p className="text-coffee-600">Total Transaksi</p>
+                    <p className="font-semibold text-coffee-900">Rp {(detail.totalTransaksi / 1000).toFixed(0)}K</p>
                   </div>
                   <div>
-                    <p className="text-gray-600">Rata-rata</p>
-                    <p className="font-semibold text-gray-900">Rp {(detail.avgTransaksi / 1000).toFixed(0)}K</p>
+                    <p className="text-coffee-600">Rata-rata</p>
+                    <p className="font-semibold text-coffee-900">Rp {(detail.avgTransaksi / 1000).toFixed(0)}K</p>
                   </div>
                 </div>
               </div>
@@ -78,24 +78,24 @@ export default function SegmentationPage() {
         <Card key={detail.segmen}>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-4 h-4 rounded-full" style={{ backgroundColor: COLORS[detail.segmen] || "#8884d8" }} />
-            <h3 className="font-semibold text-gray-900">{detail.segmen}</h3>
-            <span className="text-sm text-gray-600">({detail.count} member)</span>
+            <h3 className="font-semibold text-coffee-900">{detail.segmen}</h3>
+            <span className="text-sm text-coffee-600">({detail.count} member)</span>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-100">
+              <thead className="bg-coffee-50 border-b border-coffee-100">
                 <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Nama</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Tier</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Poin</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Total Transaksi</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Kunjungan</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Nama</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Tier</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Poin</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Total Transaksi</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Kunjungan</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
+              <tbody className="divide-y divide-coffee-100">
                 {detail.members.map((member) => (
-                  <tr key={member.id} className="hover:bg-gray-50">
-                    <td className="px-4 py-3 text-sm font-medium text-gray-900">{member.nama}</td>
+                  <tr key={member.id} className="hover:bg-coffee-50">
+                    <td className="px-4 py-3 text-sm font-medium text-coffee-900">{member.nama}</td>
                     <td className="px-4 py-3">
                       <Badge
                         type={
@@ -109,9 +109,9 @@ export default function SegmentationPage() {
                         {getLoyaltyTier(member.poin)}
                       </Badge>
                     </td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{member.poin}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900">Rp {member.totalTransaksi.toLocaleString("id-ID")}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{member.jumlahKunjungan}x</td>
+                    <td className="px-4 py-3 text-sm text-coffee-900">{member.poin}</td>
+                    <td className="px-4 py-3 text-sm text-coffee-900">Rp {member.totalTransaksi.toLocaleString("id-ID")}</td>
+                    <td className="px-4 py-3 text-sm text-coffee-900">{member.jumlahKunjungan}x</td>
                   </tr>
                 ))}
               </tbody>

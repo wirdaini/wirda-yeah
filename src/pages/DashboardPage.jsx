@@ -60,7 +60,7 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
-          <h3 className="font-semibold text-gray-900 mb-4">Penjualan Mingguan</h3>
+          <h3 className="font-semibold text-coffee-900 mb-4">Penjualan Mingguan</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={salesData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -73,7 +73,7 @@ export default function DashboardPage() {
         </Card>
 
         <Card>
-          <h3 className="font-semibold text-gray-900 mb-4">Tren Pesanan Bulanan</h3>
+          <h3 className="font-semibold text-coffee-900 mb-4">Tren Pesanan Bulanan</h3>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={trendData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -87,7 +87,7 @@ export default function DashboardPage() {
       </div>
 
       <Card>
-        <h3 className="font-semibold text-gray-900 mb-4">Menu Terpopuler</h3>
+        <h3 className="font-semibold text-coffee-900 mb-4">Menu Terpopuler</h3>
         <div className="space-y-3">
           {Object.entries(menuCount)
             .sort((a, b) => b[1] - a[1])
@@ -98,13 +98,13 @@ export default function DashboardPage() {
                   <span className="w-6 h-6 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-xs font-medium">
                     {index + 1}
                   </span>
-                  <span className="text-sm font-medium text-gray-900">{menu}</span>
+                  <span className="text-sm font-medium text-coffee-900">{menu}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-32 h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div className="w-32 h-2 bg-coffee-100 rounded-full overflow-hidden">
                     <div className="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full" style={{ width: `${(count / Math.max(...Object.values(menuCount))) * 100}%` }} />
                   </div>
-                  <span className="text-sm text-gray-600 w-12 text-right">{count}x</span>
+                  <span className="text-sm text-coffee-600 w-12 text-right">{count}x</span>
                 </div>
               </div>
             ))}

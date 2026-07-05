@@ -35,7 +35,7 @@ export default function ProductDetail() {
         className="
         bg-white
         rounded-xl
-        border border-gray-200
+        border border-coffee-200
         shadow-sm
         max-w-lg
         w-full
@@ -60,7 +60,7 @@ export default function ProductDetail() {
             className="
             text-2xl
             font-bold
-            text-gray-900
+            text-coffee-900
             mb-1
           "
           >
@@ -79,21 +79,21 @@ export default function ProductDetail() {
 
           {/* CATEGORY */}
           <div className="mb-3">
-            <p className="text-sm text-gray-400">Category</p>
+            <p className="text-sm text-coffee-400">Category</p>
 
-            <p className="text-gray-700 font-medium">{product.category}</p>
+            <p className="text-coffee-700 font-medium">{product.category}</p>
           </div>
 
           {/* BRAND */}
           <div className="mb-3">
-            <p className="text-sm text-gray-400">Brand</p>
+            <p className="text-sm text-coffee-400">Brand</p>
 
-            <p className="text-gray-700 font-medium">{product.brand}</p>
+            <p className="text-coffee-700 font-medium">{product.brand}</p>
           </div>
 
           {/* PRICE */}
           <div className="mb-3">
-            <p className="text-sm text-gray-400">Price</p>
+            <p className="text-sm text-coffee-400">Price</p>
 
             <p
               className="
@@ -108,7 +108,7 @@ export default function ProductDetail() {
 
           {/* STOCK */}
           <div>
-            <p className="text-sm text-gray-400">Stock</p>
+            <p className="text-sm text-coffee-400">Stock</p>
 
             <span
               className="

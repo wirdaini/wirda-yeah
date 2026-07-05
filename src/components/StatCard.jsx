@@ -6,7 +6,8 @@ export default function StatCard({ label, value, icon: Icon, trend, trendUp = tr
     blue: { bg: "bg-blue-50", text: "text-blue-600", iconBg: "bg-blue-50" },
     purple: { bg: "bg-purple-50", text: "text-purple-600", iconBg: "bg-purple-50" },
     red: { bg: "bg-red-50", text: "text-red-600", iconBg: "bg-red-50" },
-    gray: { bg: "bg-gray-50", text: "text-gray-600", iconBg: "bg-gray-50" },
+    gray: { bg: "bg-coffee-50", text: "text-coffee-500", iconBg: "bg-coffee-50" },
+    coffee: { bg: "bg-coffee-50", text: "text-coffee-700", iconBg: "bg-coffee-50" },
   };
 
   return (

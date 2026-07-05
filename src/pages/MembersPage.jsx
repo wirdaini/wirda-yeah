@@ -95,10 +95,10 @@ export default function MembersPage() {
           {selectedMember && (
             <div className="space-y-4">
               {/* Profile Section */}
-              <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
+              <div className="flex items-center gap-4 pb-4 border-b border-coffee-100">
                 <Avatar name={selectedMember.nama} size="lg" />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">{selectedMember.nama}</h3>
+                  <h3 className="text-lg font-semibold text-coffee-900">{selectedMember.nama}</h3>
                   <div className="flex gap-2 mt-1">
                     <Badge
                       type={
@@ -119,46 +119,46 @@ export default function MembersPage() {
               {/* Info Detail */}
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-gray-400" />
+                  <Mail className="w-4 h-4 text-coffee-400" />
                   <div>
-                    <p className="text-xs text-gray-500">Email</p>
-                    <p className="text-sm font-medium text-gray-900">{selectedMember.email || "-"}</p>
+                    <p className="text-xs text-coffee-500">Email</p>
+                    <p className="text-sm font-medium text-coffee-900">{selectedMember.email || "-"}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-gray-400" />
+                  <Phone className="w-4 h-4 text-coffee-400" />
                   <div>
-                    <p className="text-xs text-gray-500">Telepon</p>
-                    <p className="text-sm font-medium text-gray-900">{selectedMember.telepon || selectedMember.phone || "-"}</p>
+                    <p className="text-xs text-coffee-500">Telepon</p>
+                    <p className="text-sm font-medium text-coffee-900">{selectedMember.telepon || selectedMember.phone || "-"}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center gap-3">
-                  <Calendar className="w-4 h-4 text-gray-400" />
+                  <Calendar className="w-4 h-4 text-coffee-400" />
                   <div>
-                    <p className="text-xs text-gray-500">Bergabung Sejak</p>
-                    <p className="text-sm font-medium text-gray-900">{selectedMember.joinDate || "-"}</p>
+                    <p className="text-xs text-coffee-500">Bergabung Sejak</p>
+                    <p className="text-sm font-medium text-coffee-900">{selectedMember.joinDate || "-"}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <MapPin className="w-4 h-4 text-gray-400" />
+                  <MapPin className="w-4 h-4 text-coffee-400" />
                   <div>
-                    <p className="text-xs text-gray-500">Lokasi</p>
-                    <p className="text-sm font-medium text-gray-900">{selectedMember.lokasi || "-"}</p>
+                    <p className="text-xs text-coffee-500">Lokasi</p>
+                    <p className="text-sm font-medium text-coffee-900">{selectedMember.lokasi || "-"}</p>
                   </div>
                 </div>
               </div>
 
               {/* Statistik Member */}
               <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="bg-gray-50 p-3 rounded-lg text-center">
-                  <p className="text-xs text-gray-500">Poin</p>
+                <div className="bg-coffee-50 p-3 rounded-lg text-center">
+                  <p className="text-xs text-coffee-500">Poin</p>
                   <p className="text-lg font-bold text-amber-600">{selectedMember.poin || 0}</p>
                 </div>
-                <div className="bg-gray-50 p-3 rounded-lg text-center">
-                  <p className="text-xs text-gray-500">Total Transaksi</p>
+                <div className="bg-coffee-50 p-3 rounded-lg text-center">
+                  <p className="text-xs text-coffee-500">Total Transaksi</p>
                   <p className="text-lg font-bold text-amber-600">
                     Rp {(selectedMember.totalTransaksi || 0).toLocaleString("id-ID")}
                   </p>

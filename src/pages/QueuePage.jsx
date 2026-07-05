@@ -79,7 +79,7 @@ export default function QueuePage() {
           subtitle="Monitor live queue pesanan real-time" 
           breadcrumb="Antrian Pesanan" 
         />
-        <div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+        <div className="text-sm text-coffee-500 bg-coffee-100 px-3 py-1 rounded-full">
           🔄 Last update: {formattedTime}
         </div>
       </div>

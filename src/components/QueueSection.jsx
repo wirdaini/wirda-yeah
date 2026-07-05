@@ -16,7 +16,7 @@ export default function QueueSection({ title, orders, statusColor, emptyMessage,
 
   return (
     <div>
-      <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+      <h3 className="font-semibold text-coffee-900 mb-3 flex items-center gap-2">
         <div className={`w-2 h-2 ${dotColors[statusColor]} rounded-full ${orders.length > 0 ? "animate-pulse" : ""}`}></div>
         {title} ({orders.length})
       </h3>

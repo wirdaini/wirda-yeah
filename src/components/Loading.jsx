@@ -4,7 +4,7 @@ export default function Loading() {
       <div className="text-center">
         {/* Spinner animasi */}
         <div className="relative">
-          <div className="w-20 h-20 border-4 border-gray-200 border-t-amber-600 border-r-amber-400 rounded-full animate-spin mx-auto mb-5"></div>
+          <div className="w-20 h-20 border-4 border-coffee-200 border-t-amber-600 border-r-amber-400 rounded-full animate-spin mx-auto mb-5"></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="text-2xl">☕</span>
           </div>
@@ -12,7 +12,7 @@ export default function Loading() {
         
         {/* Teks loading */}
         <p className="text-amber-600 font-medium text-base">Loading...</p>
-        <p className="text-gray-400 text-xs mt-1">Papi Coffee CRM</p>
+        <p className="text-coffee-400 text-xs mt-1">Papi Coffee CRM</p>
       </div>
     </div>
   );

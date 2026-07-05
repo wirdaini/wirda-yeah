@@ -120,7 +120,7 @@ export default function AnalyticsPage() {
 
       {/* TABS dengan efek aktif */}
       <Tabs defaultValue="sales">
-        <TabsList className="bg-gray-100 p-1 rounded-lg w-fit">
+        <TabsList className="bg-coffee-100 p-1 rounded-lg w-fit">
           <TabsTrigger 
             value="sales" 
             className="data-[state=active]:bg-amber-600 data-[state=active]:text-white data-[state=active]:shadow-sm px-6 py-2 rounded-md transition-all duration-200"
@@ -138,7 +138,7 @@ export default function AnalyticsPage() {
         <TabsContent value="sales">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
             <Card>
-              <h3 className="font-semibold text-gray-900 mb-4">Penjualan Harian</h3>
+              <h3 className="font-semibold text-coffee-900 mb-4">Penjualan Harian</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={dailySales}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -169,7 +169,7 @@ export default function AnalyticsPage() {
             </Card>
 
             <Card>
-              <h3 className="font-semibold text-gray-900 mb-4">Tren Mingguan</h3>
+              <h3 className="font-semibold text-coffee-900 mb-4">Tren Mingguan</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={weeklyTrend}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -215,7 +215,7 @@ export default function AnalyticsPage() {
         <TabsContent value="customer">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
             <Card>
-              <h3 className="font-semibold text-gray-900 mb-4">Top 5 Produk Terlaris</h3>
+              <h3 className="font-semibold text-coffee-900 mb-4">Top 5 Produk Terlaris</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
@@ -244,7 +244,7 @@ export default function AnalyticsPage() {
             </Card>
 
             <Card>
-              <h3 className="font-semibold text-gray-900 mb-4">Penjualan per Segmen</h3>
+              <h3 className="font-semibold text-coffee-900 mb-4">Penjualan per Segmen</h3>
               <div className="space-y-4">
                 {segmentData
                   .sort((a, b) => b.value - a.value)
@@ -252,11 +252,11 @@ export default function AnalyticsPage() {
                     <div key={segment.name}>
                       <div className="flex items-center justify-between mb-2">
                         <Badge type="info">{segment.name}</Badge>
-                        <span className="text-sm font-semibold text-gray-900">
+                        <span className="text-sm font-semibold text-coffee-900">
                           Rp {(segment.value / 1000000).toFixed(1)}jt
                         </span>
                       </div>
-                      <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="w-full h-3 bg-coffee-100 rounded-full overflow-hidden">
                         <div
                           className="h-full rounded-full transition-all"
                           style={{

@@ -27,28 +27,28 @@ export default function Products() {
 
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-100">
+            <thead className="bg-coffee-50 border-b border-coffee-100">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">ID</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Menu</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Code</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Category</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Price</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Stock</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">ID</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Menu</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Code</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Category</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Price</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Stock</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-coffee-100">
               {filteredProducts.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-4 text-sm font-medium text-gray-900">{item.id}</td>
+                <tr key={item.id} className="hover:bg-coffee-50 transition-colors">
+                  <td className="px-4 py-4 text-sm font-medium text-coffee-900">{item.id}</td>
                   <td className="px-4 py-4 text-sm">
                     <Link to={`/products/${item.id}`} className="text-amber-600 hover:underline font-semibold">
                       {item.title}
                     </Link>
                   </td>
-                  <td className="px-4 py-4 text-sm text-gray-600">{item.code}</td>
-                  <td className="px-4 py-4 text-sm text-gray-600">{item.category}</td>
-                  <td className="px-4 py-4 text-sm font-medium text-gray-900">Rp {item.price.toLocaleString("id-ID")}</td>
+                  <td className="px-4 py-4 text-sm text-coffee-600">{item.code}</td>
+                  <td className="px-4 py-4 text-sm text-coffee-600">{item.category}</td>
+                  <td className="px-4 py-4 text-sm font-medium text-coffee-900">Rp {item.price.toLocaleString("id-ID")}</td>
                   <td className="px-4 py-4">
                     <Badge type="success">{item.stock}</Badge>
                   </td>

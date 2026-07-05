@@ -6,26 +6,26 @@ import { getLoyaltyTier } from "../lib/utils";
 
 export default function MemberTable({ members, onViewDetail }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+    <div className="bg-white rounded-xl border border-coffee-200 overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-gray-50 border-b border-gray-100">
+          <thead className="bg-coffee-50 border-b border-coffee-100">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Member</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Tier</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Poin</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Transaksi</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Segmen</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase">Aksi</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Member</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Tier</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Poin</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Transaksi</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Segmen</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Aksi</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-coffee-100">
             {members.map((member) => (
-              <tr key={member.id} className="hover:bg-gray-50 transition-colors">
+              <tr key={member.id} className="hover:bg-coffee-50 transition-colors">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <Avatar name={member.nama} size="sm" />
-                    <span className="text-sm font-medium text-gray-900">{member.nama}</span>
+                    <span className="text-sm font-medium text-coffee-900">{member.nama}</span>
                   </div>
                 </td>
                 <td className="px-4 py-3">
@@ -41,8 +41,8 @@ export default function MemberTable({ members, onViewDetail }) {
                     {getLoyaltyTier(member.poin)}
                   </Badge>
                 </td>
-                <td className="px-4 py-3 text-sm text-gray-900">{member.poin}</td>
-                <td className="px-4 py-3 text-sm text-gray-900">Rp {member.totalTransaksi?.toLocaleString("id-ID")}</td>
+                <td className="px-4 py-3 text-sm text-coffee-900">{member.poin}</td>
+                <td className="px-4 py-3 text-sm text-coffee-900">Rp {member.totalTransaksi?.toLocaleString("id-ID")}</td>
                 <td className="px-4 py-3">
                   <Badge type="info">{member.segmen}</Badge>
                 </td>

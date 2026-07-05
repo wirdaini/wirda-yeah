@@ -23,49 +23,49 @@ export default function LoyaltyPage() {
       </div>
 
       <Card>
-        <h3 className="font-semibold text-gray-900 mb-4">Daftar Reward</h3>
+        <h3 className="font-semibold text-coffee-900 mb-4">Daftar Reward</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all">
+          <div className="border border-coffee-200 rounded-lg p-4 hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
                 <span className="text-xl">☕</span>
               </div>
               <div>
-                <h4 className="font-medium text-gray-900">Minuman Gratis</h4>
-                <p className="text-xs text-gray-600">50 poin</p>
+                <h4 className="font-medium text-coffee-900">Minuman Gratis</h4>
+                <p className="text-xs text-coffee-600">50 poin</p>
               </div>
             </div>
-            <p className="text-sm text-gray-600">1x minuman pilihan (max Rp 35.000)</p>
+            <p className="text-sm text-coffee-600">1x minuman pilihan (max Rp 35.000)</p>
           </div>
-          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all">
+          <div className="border border-coffee-200 rounded-lg p-4 hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                 <span className="text-xl">🍰</span>
               </div>
               <div>
-                <h4 className="font-medium text-gray-900">Gratis Snack</h4>
-                <p className="text-xs text-gray-600">30 poin</p>
+                <h4 className="font-medium text-coffee-900">Gratis Snack</h4>
+                <p className="text-xs text-coffee-600">30 poin</p>
               </div>
             </div>
-            <p className="text-sm text-gray-600">1x snack atau dessert pilihan</p>
+            <p className="text-sm text-coffee-600">1x snack atau dessert pilihan</p>
           </div>
-          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all">
+          <div className="border border-coffee-200 rounded-lg p-4 hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                 <span className="text-xl">💳</span>
               </div>
               <div>
-                <h4 className="font-medium text-gray-900">Voucher Diskon</h4>
-                <p className="text-xs text-gray-600">100 poin</p>
+                <h4 className="font-medium text-coffee-900">Voucher Diskon</h4>
+                <p className="text-xs text-coffee-600">100 poin</p>
               </div>
             </div>
-            <p className="text-sm text-gray-600">Voucher diskon 20% untuk 3 transaksi</p>
+            <p className="text-sm text-coffee-600">Voucher diskon 20% untuk 3 transaksi</p>
           </div>
         </div>
       </Card>
 
       <Card>
-        <h3 className="font-semibold text-gray-900 mb-4">Poin Per Member</h3>
+        <h3 className="font-semibold text-coffee-900 mb-4">Poin Per Member</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {membersData.sort((a, b) => b.poin - a.poin).slice(0, 12).map((member) => {
             const tier = getLoyaltyTier(member.poin);
@@ -73,8 +73,8 @@ export default function LoyaltyPage() {
               <div key={member.id}>
                 <div className="mb-2">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-medium text-gray-900">{member.nama}</span>
-                    <span className="text-xs text-gray-600">{tier}</span>
+                    <span className="text-sm font-medium text-coffee-900">{member.nama}</span>
+                    <span className="text-xs text-coffee-600">{tier}</span>
                   </div>
                 </div>
                 <LoyaltyBadge poin={member.poin} />

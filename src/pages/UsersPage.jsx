@@ -145,7 +145,7 @@ export default function UsersPage() {
       {/* TABLE */}
       <div className="bg-white rounded-xl shadow overflow-hidden">
         <table className="w-full">
-          <thead className="bg-gray-50">
+          <thead className="bg-coffee-50">
             <tr>
               <th className="px-6 py-3 text-left">No</th>
               <th className="px-6 py-3 text-left">Nama</th>      {/* ← NAMA DI ATAS */}
@@ -157,7 +157,7 @@ export default function UsersPage() {
           <tbody>
             {users.length === 0 ? (
               <tr>
-                <td colSpan="5" className="text-center py-4 text-gray-500">
+                <td colSpan="5" className="text-center py-4 text-coffee-500">
                   Belum ada data user
                 </td>
               </tr>
@@ -173,7 +173,7 @@ export default function UsersPage() {
                         ? 'bg-purple-100 text-purple-700' 
                         : user.role === 'super_admin'
                         ? 'bg-red-100 text-red-700'
-                        : 'bg-gray-100 text-gray-700'
+                        : 'bg-coffee-100 text-coffee-700'
                     }`}>
                       {user.role || 'staff'}
                     </span>
@@ -212,7 +212,7 @@ export default function UsersPage() {
             <form onSubmit={handleSubmit} className="space-y-3">
               {/* === NAMA LENGKAP (DI ATAS) === */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-coffee-700 mb-1">
                   Nama Lengkap
                 </label>
                 <input
@@ -220,7 +220,7 @@ export default function UsersPage() {
                   name="full_name"
                   value={formData.full_name}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                   required
                 />
               </div>
@@ -229,7 +229,7 @@ export default function UsersPage() {
                 <>
                   {/* === EMAIL === */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-coffee-700 mb-1">
                       Email
                     </label>
                     <input
@@ -237,14 +237,14 @@ export default function UsersPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                       required
                     />
                   </div>
 
                   {/* === PASSWORD === */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-coffee-700 mb-1">
                       Password
                     </label>
                     <input
@@ -252,7 +252,7 @@ export default function UsersPage() {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                       required
                       minLength={6}
                     />
@@ -262,14 +262,14 @@ export default function UsersPage() {
 
               {/* === ROLE === */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-coffee-700 mb-1">
                   Role
                 </label>
                 <select
                   name="role"
                   value={formData.role}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 >
                   <option value="staff">Staff</option>
                   <option value="admin">Admin</option>
@@ -289,7 +289,7 @@ export default function UsersPage() {
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400"
+                  className="bg-coffee-100 text-coffee-800 px-4 py-2 rounded-lg hover:bg-coffee-200"
                 >
                   Batal
                 </button>

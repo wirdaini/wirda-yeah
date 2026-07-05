@@ -93,7 +93,7 @@ export default function OrdersPage() {
           <select
             value={statusFilter}
             onChange={(e) => handleStatusChange(e.target.value)}
-            className="px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+            className="px-4 py-2.5 border border-coffee-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
           >
             <option>Semua Status</option>
             <option>Selesai</option>
@@ -102,7 +102,7 @@ export default function OrdersPage() {
           </select>
           
           {/* Informasi jumlah hasil filter */}
-          <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1.5 rounded-full ml-auto">
+          <span className="text-sm text-coffee-500 bg-coffee-100 px-3 py-1.5 rounded-full ml-auto">
             {filteredOrders.length} order ditemukan
           </span>
         </div>

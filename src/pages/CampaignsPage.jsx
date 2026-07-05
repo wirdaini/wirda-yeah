@@ -37,13 +37,13 @@ export default function CampaignsPage() {
       </div>
 
       <div className="flex items-center gap-3">
-        <Filter className="w-4 h-4 text-gray-600" />
+        <Filter className="w-4 h-4 text-coffee-600" />
         <div className="flex gap-2">
           {["Semua", "Aktif", "Terjadwal", "Selesai"].map((status) => (
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${filter === status ? "bg-amber-600 text-white" : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"}`}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${filter === status ? "bg-amber-600 text-white" : "bg-white text-coffee-600 border border-coffee-200 hover:bg-coffee-50"}`}
             >
               {status}
             </button>
@@ -58,8 +58,8 @@ export default function CampaignsPage() {
       </div>
 
       {filteredCampaigns.length === 0 && (
-        <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-          <p className="text-gray-600">Tidak ada kampanye dengan status "{filter}"</p>
+        <div className="bg-white rounded-xl border border-coffee-200 p-12 text-center">
+          <p className="text-coffee-600">Tidak ada kampanye dengan status "{filter}"</p>
         </div>
       )}
     </div>
