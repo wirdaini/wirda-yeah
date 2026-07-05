@@ -6,6 +6,23 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        coffee: {
+          50: "#FDFBF8",
+          100: "#FAF3E8",
+          200: "#F3E5D3",
+          300: "#EDE4DA",
+          400: "#D8C4B5",
+          500: "#C08A47",
+          600: "#8A5A2B",
+          700: "#5A4436",
+          800: "#3E2723",
+          900: "#2A1A17",
+        },
+        muted: {
+          DEFAULT: "#A0917F",
+        },
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

@@ -5,22 +5,22 @@ export default function Header() {
   const navigate = useNavigate();
 
   return (
-    <div className="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between">
+    <div className="h-16 bg-white border-b border-coffee-300 px-6 flex items-center justify-between">
       <div className="flex-1 max-w-md">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-coffee-700" />
           <input
             type="text"
             placeholder="Search Here..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-coffee-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
           />
         </div>
       </div>
 
       <div className="flex items-center gap-3">
-        <button className="relative p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-all">
+        <button className="relative p-2 text-coffee-400 hover:text-coffee-700 hover:bg-coffee-50 rounded-lg transition-all">
           <Bell className="w-5 h-5" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-amber-500 rounded-full"></span>
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-coffee-500 rounded-full"></span>
         </button>
 
         <button

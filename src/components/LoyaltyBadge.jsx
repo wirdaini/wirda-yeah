@@ -1,4 +1,5 @@
-﻿import { Award, Coffee, Gift } from "lucide-react";
+﻿// src/components/LoyaltyBadge.jsx
+import { Award, Coffee, Gift } from "lucide-react";
 import { getLoyaltyTier, nextTierProgress, tierClassName } from "../lib/utils";
 
 export default function LoyaltyBadge({ poin = 0 }) {
@@ -20,7 +21,7 @@ export default function LoyaltyBadge({ poin = 0 }) {
 
       {progress ? (
         <div className="space-y-3">
-          <div className="text-sm text-slate-700">
+          <div className="text-sm text-coffee-700">
             {progress.pointsNeeded > 0
               ? `${progress.pointsNeeded} poin lagi ke ${progress.nextTier}`
               : `Siap naik ke ${progress.nextTier}`}
@@ -28,10 +29,10 @@ export default function LoyaltyBadge({ poin = 0 }) {
           <div className="w-full h-2 rounded-full bg-white/80 overflow-hidden">
             <div className="h-full rounded-full bg-current" style={{ width: `${progress.progress}%` }} />
           </div>
-          <p className="text-xs text-slate-600">{Math.round(progress.progress)}% progress ke {progress.nextTier}</p>
+          <p className="text-xs text-coffee-600">{Math.round(progress.progress)}% progress ke {progress.nextTier}</p>
         </div>
       ) : (
-        <div className="mt-3 flex items-center gap-2 text-sm text-slate-700">
+        <div className="mt-3 flex items-center gap-2 text-sm text-coffee-700">
           <Gift className="w-4 h-4" />
           <span>Tier tertinggi. Selamat!</span>
         </div>

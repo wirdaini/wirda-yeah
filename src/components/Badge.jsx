@@ -1,7 +1,7 @@
 // src/components/Badge.jsx
 export default function Badge({ children, type = "default", className = "" }) {
   const types = {
-    default: "bg-gray-100 text-gray-800",
+    default: "bg-coffee-100 text-coffee-700",
     success: "bg-green-100 text-green-800",
     danger: "bg-red-100 text-red-800",
     warning: "bg-yellow-100 text-yellow-800",

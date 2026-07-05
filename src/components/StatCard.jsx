@@ -10,11 +10,11 @@ export default function StatCard({ label, value, icon: Icon, trend, trendUp = tr
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6">
+    <div className="bg-white rounded-xl border border-coffee-300 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-gray-600 mb-1">{label}</p>
-          <h3 className="text-2xl font-bold text-gray-900">{value}</h3>
+          <p className="text-sm text-muted mb-1">{label}</p>
+          <h3 className="text-2xl font-bold text-coffee-800">{value}</h3>
           {trend && (
             <p className={`text-xs mt-1 ${trendUp ? "text-green-600" : "text-red-600"}`}>
               {trendUp ? "↑" : "↓"} {trend}

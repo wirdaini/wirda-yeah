@@ -11,14 +11,20 @@ export function getLoyaltyTier(poin = 0) {
   return "Silver";
 }
 
+// Warna tier dibuat soft/pastel (bg-*-50, border-*-200) mengikuti gaya badge Dealport
+// (Order Management & Customer Details: status pill selalu pastel lembut, bukan solid).
+// Tetap 3 warna beda per tier karena ini semantik (perak/emas/platinum), sama seperti
+// aturan Badge status (hijau/merah/kuning) yang sudah disepakati sebelumnya.
 export function tierClassName(tier) {
   const styles = {
-    Silver: "text-slate-700 bg-slate-100 border-slate-200",
-    Gold: "text-amber-700 bg-amber-100 border-amber-200",
-    Platinum: "text-sky-700 bg-sky-100 border-sky-200",
+    Silver: "text-slate-600 bg-slate-50 border-slate-200",
+    Gold: "text-amber-600 bg-amber-50 border-amber-200",
+    Platinum: "text-sky-600 bg-sky-50 border-sky-200",
   };
 
-  return styles[tier] ?? "text-gray-700 bg-gray-100 border-gray-200";
+  // fallback dibuat pakai token brand (coffee), bukan gray generik,
+  // karena kondisi ini cuma kepakai kalau tier tidak dikenali
+  return styles[tier] ?? "text-coffee-700 bg-coffee-100 border-coffee-200";
 }
 
 export function nextTierProgress(poin = 0) {

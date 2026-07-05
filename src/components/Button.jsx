@@ -1,18 +1,18 @@
 // src/components/Button.jsx
-export default function Button({ 
-  children, 
-  type = "primary", 
-  onClick, 
+export default function Button({
+  children,
+  type = "primary",
+  onClick,
   className = "",
-  disabled = false 
+  disabled = false
 }) {
   const types = {
-    primary: "bg-amber-600 hover:bg-amber-700 text-white",
-    secondary: "bg-gray-600 hover:bg-gray-700 text-white",
+    primary: "bg-coffee-800 hover:bg-coffee-900 text-white",
+    secondary: "bg-coffee-100 hover:bg-coffee-200 text-coffee-800",
     success: "bg-green-600 hover:bg-green-700 text-white",
     danger: "bg-red-600 hover:bg-red-700 text-white",
     warning: "bg-yellow-500 hover:bg-yellow-600 text-white",
-    outline: "border border-amber-600 text-amber-600 hover:bg-amber-50",
+    outline: "border border-coffee-300 text-coffee-700 hover:bg-coffee-50",
   };
 
   return (

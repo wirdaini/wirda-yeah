@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Mail, Lock, Coffee } from "lucide-react";
+import { Mail, Lock } from "lucide-react";
 import { usersAPI } from "../../services/usersAPI";
+import logo from "../../assets/logo.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -46,8 +47,8 @@ export default function Login() {
     <div className="w-full max-w-md">
       <div className="bg-white rounded-2xl shadow-xl p-8">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-700 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <Coffee className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg overflow-hidden">
+            <img src={logo} alt="Papi Coffee" className="w-full h-full object-contain" />
           </div>
 
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
