@@ -1,7 +1,7 @@
 // src/components/MemberTable.jsx
 import Badge from "./Badge";
 import Avatar from "./Avatar";
-import { Eye } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import { getLoyaltyTier } from "../lib/utils";
 
 export default function MemberTable({ members, onViewDetail }) {
@@ -47,13 +47,18 @@ export default function MemberTable({ members, onViewDetail }) {
                   <Badge type="info">{member.segmen}</Badge>
                 </td>
                 <td className="px-4 py-3">
-                  <button
-                    onClick={() => onViewDetail(member)}
-                    className="text-amber-600 hover:text-amber-700 flex items-center gap-1 text-sm transition-colors"
-                  >
-                    <Eye className="w-4 h-4" />
-                    Detail
-                  </button>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => onViewDetail(member)}
+                      className="text-amber-600 hover:text-amber-700 flex items-center gap-1 text-sm transition-colors"
+                    >
+                      <Eye className="w-4 h-4" />
+                      Detail
+                    </button>
+                    <button className="text-coffee-300 hover:text-red-600 transition-colors">
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </td>
                </tr>
             ))}

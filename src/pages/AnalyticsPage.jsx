@@ -71,7 +71,7 @@ export default function AnalyticsPage() {
   const totalOrders = dailySales.reduce((sum, day) => sum + day.orders, 0);
   const avgOrderValue = Math.round(totalRevenue / totalOrders);
   const newMembers = membersData.filter(
-    (m) => m.segmen === "Pelanggan Baru",
+    (m) => m.segmen === "Baru",
   ).length;
 
   return (

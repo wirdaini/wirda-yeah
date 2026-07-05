@@ -1,0 +1,97 @@
+{
+  "sumberData": "Kel8_CRM_DataDummyCustomers_Final2.xlsx (dihitung dari seluruh data, sinkron dengan Power BI)",
+  "tanggalDataTerakhir": "2026-05-30",
+  "totalPenjualan": 992924125,
+  "totalOrder": 22068,
+  "totalMember": 655,
+  "totalPoin": 90809,
+  "dibuatCount": 0,
+  "menungguCount": 0,
+  "pesananPadaTanggalTerakhir": 91,
+  "topMenu": {
+    "menu": "Matcha Berry",
+    "qty": 1435
+  },
+  "bestSellingMenu": [
+    {
+      "menu": "Matcha Berry",
+      "qty": 1435,
+      "price": 30000,
+      "stock": 48
+    },
+    {
+      "menu": "Matcha",
+      "qty": 1404,
+      "price": 23000,
+      "stock": 41
+    },
+    {
+      "menu": "Kopi Papi Premium (Strong)",
+      "qty": 1403,
+      "price": 25000,
+      "stock": 47
+    },
+    {
+      "menu": "Kopi Caramel",
+      "qty": 1389,
+      "price": 25000,
+      "stock": 12
+    }
+  ],
+  "categorySales": [
+    {
+      "kategori": "Kopi Susu",
+      "total": 398017000
+    },
+    {
+      "kategori": "Matcha Series",
+      "total": 179800000
+    },
+    {
+      "kategori": "Non Coffee",
+      "total": 160713000
+    },
+    {
+      "kategori": "Snack",
+      "total": 149617000
+    },
+    {
+      "kategori": "Black Coffee",
+      "total": 137981000
+    },
+    {
+      "kategori": "Affogato Series",
+      "total": 20481000
+    }
+  ],
+  "salesLast7Days": [
+    {
+      "tanggal": "2026-05-24",
+      "penjualan": 3599550
+    },
+    {
+      "tanggal": "2026-05-25",
+      "penjualan": 4099550
+    },
+    {
+      "tanggal": "2026-05-26",
+      "penjualan": 3544500
+    },
+    {
+      "tanggal": "2026-05-27",
+      "penjualan": 4098500
+    },
+    {
+      "tanggal": "2026-05-28",
+      "penjualan": 3715000
+    },
+    {
+      "tanggal": "2026-05-29",
+      "penjualan": 3677000
+    },
+    {
+      "tanggal": "2026-05-30",
+      "penjualan": 3412800
+    }
+  ]
+}

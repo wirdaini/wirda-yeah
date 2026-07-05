@@ -15,10 +15,9 @@ export default function SegmentationPage() {
   const pieData = Object.entries(segmentCounts).map(([name, value]) => ({ name, value }));
 
   const COLORS = {
-    "Pelanggan Baru": "#3b82f6",
-    "Pelanggan Aktif": "#10b981",
-    "Pelanggan Tidur": "#ef4444",
-    "Pelanggan VIP": "#f59e0b",
+    "Baru": "#3b82f6",
+    "Reguler": "#10b981",
+    "Tidak Aktif": "#ef4444",
   };
 
   const segmentDetails = Object.entries(segmentCounts).map(([segmen, count]) => {

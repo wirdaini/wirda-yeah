@@ -77,10 +77,21 @@ export default function MembersPage() {
         />
       </div>
 
-      <MemberTable 
-        members={membersData} 
-        onViewDetail={handleViewDetail}
-      />
+      <div className="bg-white rounded-xl border border-coffee-300 overflow-hidden">
+        <MemberTable
+          members={membersData}
+          onViewDetail={handleViewDetail}
+        />
+        <div className="flex items-center justify-between px-6 py-4 border-t border-coffee-100">
+          <button className="flex items-center gap-1 px-3 py-1.5 text-sm text-coffee-500 border border-coffee-200 rounded-lg hover:bg-coffee-50 transition-all">
+            ← Previous
+          </button>
+          <span className="text-sm text-coffee-500">Halaman 1 dari 1</span>
+          <button className="flex items-center gap-1 px-3 py-1.5 text-sm text-coffee-500 border border-coffee-200 rounded-lg hover:bg-coffee-50 transition-all">
+            Next →
+          </button>
+        </div>
+      </div>
 
       {/* Dialog Detail Member */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
