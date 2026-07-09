@@ -125,7 +125,7 @@ export default function UsersPage() {
         <h1 className="text-2xl font-bold">Manajemen User</h1>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 flex items-center gap-2"
+          className="bg-coffee-600 text-white px-4 py-2 rounded-lg hover:bg-coffee-700 flex items-center gap-2"
         >
           + Tambah User
         </button>
@@ -220,7 +220,7 @@ export default function UsersPage() {
                   name="full_name"
                   value={formData.full_name}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                   required
                 />
               </div>
@@ -237,7 +237,7 @@ export default function UsersPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -252,7 +252,7 @@ export default function UsersPage() {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                       required
                       minLength={6}
                     />
@@ -269,7 +269,7 @@ export default function UsersPage() {
                   name="role"
                   value={formData.role}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-coffee-300 rounded-lg focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                 >
                   <option value="staff">Staff</option>
                   <option value="admin">Admin</option>
@@ -282,7 +282,7 @@ export default function UsersPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 flex-1 disabled:opacity-50"
+                  className="bg-coffee-600 text-white px-4 py-2 rounded-lg hover:bg-coffee-700 flex-1 disabled:opacity-50"
                 >
                   {loading ? 'Loading...' : (editingUser ? 'Update' : 'Simpan')}
                 </button>

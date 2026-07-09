@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Mail, Lock, User } from "lucide-react";
+import { Mail, Lock, User, Phone, Calendar } from "lucide-react";
 import { usersAPI } from "../../services/usersAPI";
+import { createMember } from "../../services/membersAPI";
 import logo from "../../assets/logo.png";
 
 export default function Register() {
@@ -14,6 +15,8 @@ export default function Register() {
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
+    noHP: "",
+    tanggalLahir: "",
     password: "",
     confirmPassword: "",
   });
@@ -48,10 +51,29 @@ export default function Register() {
         segmen: "Pelanggan Baru",
       });
 
-      alert("Registrasi berhasil! Silakan login.");
+      // UC03: selain bikin akun login, langsung daftarin juga sebagai
+      // member CRM (poin, tier, dst) supaya begitu login gak nemu data
+      // kosong. Sekarang beneran disimpan ke tabel `members` Supabase
+      // lewat createMember — bukan localStorage lagi. id, created_at,
+      // total_transactions, visit_count, last_visit_at diisi otomatis
+      // oleh database.
+      await createMember({
+        name: formData.full_name,
+        phone: formData.noHP || null,
+        email: formData.email,
+        birth_date: formData.tanggalLahir || null,
+        tier: "Silver",
+        total_points: 0,
+        segment: "Baru",
+        favorite_menu: null,
+      });
+
+      alert("Registrasi berhasil! Akun & data member kamu sudah dibuat. Silakan login.");
       setFormData({
         full_name: "",
         email: "",
+        noHP: "",
+        tanggalLahir: "",
         password: "",
         confirmPassword: "",
       });
@@ -111,7 +133,7 @@ export default function Register() {
                 value={formData.full_name}
                 onChange={handleChange}
                 placeholder="Masukkan nama lengkap"
-                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                 required
               />
             </div>
@@ -131,9 +153,46 @@ export default function Register() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Masukkan email"
-                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                 required
               />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-medium text-coffee-700 mb-2">
+                No. HP
+              </label>
+              <div className="relative">
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-coffee-400" />
+                <input
+                  type="tel"
+                  name="noHP"
+                  value={formData.noHP}
+                  onChange={handleChange}
+                  placeholder="08xxxxxxxxxx"
+                  className="w-full pl-11 pr-3 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-coffee-700 mb-2">
+                Tgl. Lahir
+              </label>
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-coffee-400" />
+                <input
+                  type="date"
+                  name="tanggalLahir"
+                  value={formData.tanggalLahir}
+                  onChange={handleChange}
+                  className="w-full pl-11 pr-2 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:border-transparent text-sm"
+                  required
+                />
+              </div>
             </div>
           </div>
 
@@ -151,7 +210,7 @@ export default function Register() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Masukkan password"
-                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                 required
               />
             </div>
@@ -171,7 +230,7 @@ export default function Register() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="Konfirmasi password"
-                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                 required
               />
             </div>
@@ -180,7 +239,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-amber-600 to-amber-700 text-white py-3 rounded-lg font-medium"
+            className="w-full bg-gradient-to-r from-coffee-600 to-coffee-700 text-white py-3 rounded-lg font-medium"
           >
             {loading ? "Loading..." : "Daftar"}
           </button>
@@ -191,7 +250,7 @@ export default function Register() {
           <button
             type="button"
             onClick={() => navigate("/login")}
-            className="text-amber-600 hover:underline"
+            className="text-coffee-600 hover:underline"
           >
             Login di sini
           </button>

@@ -15,7 +15,7 @@ export default function QueueCard({ order }) {
         ))}
       </div>
       <div className="flex items-center justify-between mt-3 pt-2 border-t border-coffee-100">
-        <span className="text-sm font-semibold text-amber-600">Rp {order.totalHarga?.toLocaleString("id-ID")}</span>
+        <span className="text-sm font-semibold text-coffee-600">Rp {order.totalHarga?.toLocaleString("id-ID")}</span>
         <span className="text-xs text-coffee-500">{order.metodePembayaran}</span>
       </div>
     </div>

@@ -1,8 +1,8 @@
 // src/pages/FeedbackPage.jsx
-import { useState } from "react";
-import { Filter, Star } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Filter, Star, Loader2 } from "lucide-react";
 import FeedbackTicket from "../components/FeedbackTicket";
-import feedbackData from "../data/feedback.json";
+import { fetchFeedback, updateFeedback } from "../services/feedbackAPI";
 import PageHeader from "../components/PageHeader";
 import Card from "../components/Card";
 import Badge from "../components/Badge";
@@ -15,57 +15,106 @@ import {
 } from "@/components/ui/accordion";
 
 export default function FeedbackPage() {
+  const [feedbackList, setFeedbackList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [filter, setFilter] = useState("Semua");
+
+  // Ambil data feedback dari Supabase begitu halaman dibuka
+  useEffect(() => {
+    loadFeedback();
+  }, []);
+
+  const loadFeedback = () => {
+    setLoading(true);
+    setError("");
+    fetchFeedback()
+      .then((data) => setFeedbackList(data))
+      .catch(() => setError("Gagal memuat data feedback dari database."))
+      .finally(() => setLoading(false));
+  };
+
+  const handleStatusChange = async (id, newStatus) => {
+    const current = feedbackList.find((f) => f.id === id);
+    if (!current) return;
+
+    const changes = { status: newStatus };
+    // Sama kayak logika lama: kalau ditutup dan belum ada tanggalSelesai,
+    // otomatis diisi waktu sekarang.
+    if (newStatus === "Closed" && !current.tanggalSelesai) {
+      changes.tanggalSelesai = new Date().toISOString();
+    }
+
+    try {
+      const updated = await updateFeedback(id, changes);
+      setFeedbackList((prev) => prev.map((f) => (f.id === id ? updated : f)));
+    } catch {
+      alert("Gagal mengubah status feedback. Coba lagi.");
+    }
+  };
 
   const filteredFeedback =
     filter === "Semua"
-      ? feedbackData
-      : feedbackData.filter((f) => f.status === filter);
+      ? feedbackList
+      : feedbackList.filter((f) => f.status === filter);
+
+  if (loading) {
+    return (
+      <div className="p-6 flex items-center justify-center gap-2 text-sm text-coffee-500 h-64">
+        <Loader2 className="w-4 h-4 animate-spin" />
+        Memuat data feedback dari database...
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="p-6 text-sm text-red-600">{error}</div>;
+  }
 
   const statusCounts = {
-    Open: feedbackData.filter((f) => f.status === "Open").length,
-    "In Progress": feedbackData.filter((f) => f.status === "In Progress")
+    Open: feedbackList.filter((f) => f.status === "Open").length,
+    "In Progress": feedbackList.filter((f) => f.status === "In Progress")
       .length,
-    Closed: feedbackData.filter((f) => f.status === "Closed").length,
+    Closed: feedbackList.filter((f) => f.status === "Closed").length,
   };
 
-  const avgRating = (
-    feedbackData.reduce((sum, f) => sum + f.rating, 0) / feedbackData.length
-  ).toFixed(1);
+  const avgRating = feedbackList.length
+    ? (feedbackList.reduce((sum, f) => sum + f.rating, 0) / feedbackList.length).toFixed(1)
+    : "0.0";
   const ratingDistribution = [5, 4, 3, 2, 1].map((star) => ({
     star,
-    count: feedbackData.filter((f) => f.rating === star).length,
+    count: feedbackList.filter((f) => f.rating === star).length,
   }));
 
   const categories = [
     {
       name: "Produk",
-      count: feedbackData.filter((f) => f.kategori === "Produk").length,
+      count: feedbackList.filter((f) => f.kategori === "Produk").length,
       color: "purple",
     },
     {
       name: "Pelayanan",
-      count: feedbackData.filter((f) => f.kategori === "Pelayanan").length,
+      count: feedbackList.filter((f) => f.kategori === "Pelayanan").length,
       color: "blue",
     },
     {
       name: "Fasilitas",
-      count: feedbackData.filter((f) => f.kategori === "Fasilitas").length,
+      count: feedbackList.filter((f) => f.kategori === "Fasilitas").length,
       color: "green",
     },
     {
       name: "Sistem",
-      count: feedbackData.filter((f) => f.kategori === "Sistem").length,
+      count: feedbackList.filter((f) => f.kategori === "Sistem").length,
       color: "orange",
     },
     {
       name: "Pujian",
-      count: feedbackData.filter((f) => f.kategori === "Pujian").length,
+      count: feedbackList.filter((f) => f.kategori === "Pujian").length,
       color: "pink",
     },
     {
       name: "Saran",
-      count: feedbackData.filter((f) => f.kategori === "Saran").length,
+      count: feedbackList.filter((f) => f.kategori === "Saran").length,
       color: "indigo",
     },
   ];
@@ -85,19 +134,19 @@ export default function FeedbackPage() {
               <div className="flex items-center gap-2">
                 <span className="text-lg">📊</span>
                 <span className="font-semibold text-coffee-900">Ringkasan Statistik Feedback</span>
-                <Badge className="ml-2 bg-amber-100 text-amber-700 hover:bg-amber-100">
-                  {feedbackData.length} Total
+                <Badge className="ml-2 bg-coffee-100 text-coffee-700 hover:bg-coffee-100">
+                  {feedbackList.length} Total
                 </Badge>
               </div>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6 pt-2">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 p-4 rounded-lg">
-                  <p className="text-sm text-amber-700 mb-1">⭐ Rata-rata Rating</p>
-                  <p className="text-2xl font-bold text-amber-900">{avgRating} / 5.0</p>
+                <div className="bg-gradient-to-br from-coffee-50 to-coffee-100/50 p-4 rounded-lg">
+                  <p className="text-sm text-coffee-700 mb-1">⭐ Rata-rata Rating</p>
+                  <p className="text-2xl font-bold text-coffee-900">{avgRating} / 5.0</p>
                   <div className="flex items-center gap-1 mt-1">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className={`w-3 h-3 ${i < Math.round(Number(avgRating)) ? "fill-amber-500 text-amber-500" : "fill-coffee-300 text-coffee-300"}`} />
+                      <Star key={i} className={`w-3 h-3 ${i < Math.round(Number(avgRating)) ? "fill-coffee-500 text-coffee-500" : "fill-coffee-300 text-coffee-300"}`} />
                     ))}
                   </div>
                 </div>
@@ -143,7 +192,7 @@ export default function FeedbackPage() {
         <Card className="text-center">
           <p className="text-sm text-coffee-600 mb-1">Total Feedback</p>
           <h3 className="text-3xl font-bold text-coffee-900">
-            {feedbackData.length}
+            {feedbackList.length}
           </h3>
         </Card>
         <Card className="border-red-200 bg-red-50 text-center">
@@ -177,12 +226,12 @@ export default function FeedbackPage() {
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star
                   key={i}
-                  className={`w-5 h-5 ${i < Math.round(Number(avgRating)) ? "fill-amber-400 text-amber-400" : "fill-coffee-200 text-coffee-200"}`}
+                  className={`w-5 h-5 ${i < Math.round(Number(avgRating)) ? "fill-coffee-400 text-coffee-400" : "fill-coffee-200 text-coffee-200"}`}
                 />
               ))}
             </div>
             <p className="text-sm text-coffee-600">
-              Dari {feedbackData.length} feedback
+              Dari {feedbackList.length} feedback
             </p>
           </div>
           <div className="space-y-2">
@@ -193,8 +242,8 @@ export default function FeedbackPage() {
                 </span>
                 <div className="flex-1 h-2 bg-coffee-100 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-amber-400 rounded-full"
-                    style={{ width: `${(count / feedbackData.length) * 100}%` }}
+                    className="h-full bg-coffee-400 rounded-full"
+                    style={{ width: `${feedbackList.length ? (count / feedbackList.length) * 100 : 0}%` }}
                   />
                 </div>
                 <span className="text-sm text-coffee-600 w-8 text-right">
@@ -234,7 +283,7 @@ export default function FeedbackPage() {
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${filter === status ? "bg-amber-600 text-white" : "bg-white text-coffee-600 border border-coffee-200 hover:bg-coffee-50"}`}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${filter === status ? "bg-coffee-600 text-white" : "bg-white text-coffee-600 border border-coffee-200 hover:bg-coffee-50"}`}
             >
               {status}
             </button>
@@ -244,7 +293,11 @@ export default function FeedbackPage() {
 
       <div className="space-y-4">
         {filteredFeedback.map((feedback) => (
-          <FeedbackTicket key={feedback.id} feedback={feedback} />
+          <FeedbackTicket
+            key={feedback.id}
+            feedback={feedback}
+            onStatusChange={handleStatusChange}
+          />
         ))}
       </div>
 

@@ -1,16 +1,16 @@
 // src/components/SearchInput.jsx
+import { forwardRef } from "react";
 import { Search } from "lucide-react";
 
-export default function SearchInput({
-  placeholder = "Cari...",
-  value,
-  onChange,
-  className = ""
-}) {
+const SearchInput = forwardRef(function SearchInput(
+  { placeholder = "Cari...", value, onChange, className = "" },
+  ref
+) {
   return (
     <div className={`relative flex-1 ${className}`}>
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-coffee-700" />
       <input
+        ref={ref}
         type="text"
         placeholder={placeholder}
         value={value}
@@ -19,4 +19,6 @@ export default function SearchInput({
       />
     </div>
   );
-}
+});
+
+export default SearchInput;

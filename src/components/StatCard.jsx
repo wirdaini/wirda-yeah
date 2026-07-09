@@ -1,7 +1,7 @@
 // src/components/StatCard.jsx
 export default function StatCard({ label, value, icon: Icon, trend, trendUp = true, color = "amber" }) {
   const colors = {
-    amber: { bg: "bg-amber-50", text: "text-amber-600", iconBg: "bg-amber-50" },
+    amber: { bg: "bg-coffee-50", text: "text-coffee-600", iconBg: "bg-coffee-50" },
     green: { bg: "bg-green-50", text: "text-green-600", iconBg: "bg-green-50" },
     blue: { bg: "bg-blue-50", text: "text-blue-600", iconBg: "bg-blue-50" },
     purple: { bg: "bg-purple-50", text: "text-purple-600", iconBg: "bg-purple-50" },

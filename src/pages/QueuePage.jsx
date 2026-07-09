@@ -1,33 +1,31 @@
 // src/pages/QueuePage.jsx
 import { useState, useEffect, useRef } from "react";
-import ordersData from "../data/orders.json";
+import { fetchTransactions } from "../services/transactionsAPI";
 import PageHeader from "../components/PageHeader";
 import QueueSection from "../components/QueueSection";
 
 export default function QueuePage() {
-  const [orders, setOrders] = useState(ordersData);
+  const [orders, setOrders] = useState([]);
   const [lastUpdated, setLastUpdated] = useState(new Date());
   const intervalRef = useRef(null); // useRef untuk tracking interval
-  
-  // useEffect untuk auto-refresh queue setiap 10 detik (simulasi real-time)
+
+  // useEffect untuk auto-refresh queue setiap 10 detik.
+  // Sebelumnya (waktu masih pakai orders.json) status diacak random cuma
+  // buat simulasi demo. Sekarang datanya beneran diambil ulang dari tabel
+  // `transactions` Supabase, jadi kalau kasir update status di OrdersPage,
+  // halaman antrian ini otomatis ikut berubah dalam 10 detik tanpa refresh
+  // manual.
   useEffect(() => {
-    // Fungsi untuk "fetch" data terbaru
     const refreshQueue = () => {
-      console.log("🔄 Refreshing queue data...");
-      
-      // Simulasi update data (di real project pake API)
-      // Misal: ada order baru masuk atau status berubah
-      const updatedOrders = ordersData.map(order => ({
-        ...order,
-        // Simulasi: kadang status berubah (untuk demo)
-        status: Math.random() > 0.9 ? 
-          (order.status === "Menunggu" ? "Dibuat" : 
-           order.status === "Dibuat" ? "Selesai" : order.status) 
-          : order.status
-      }));
-      
-      setOrders(updatedOrders);
-      setLastUpdated(new Date());
+      fetchTransactions()
+        .then((data) => {
+          setOrders(data);
+          setLastUpdated(new Date());
+        })
+        .catch(() => {
+          // Gagal refresh gak perlu bikin halaman error total, biarin data
+          // lama tetap tampil sampai refresh berikutnya berhasil.
+        });
     };
 
     // Jalankan pertama kali saat komponen mount
@@ -40,10 +38,9 @@ export default function QueuePage() {
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
-        console.log("🧹 Queue interval cleaned up");
       }
     };
-  }, []); // Dependency array kosong = hanya jalan sekali saat mount
+  }, []); // Dependency array kosong = hanya setup interval sekali saat mount
 
   // useEffect kedua: kasih notifikasi kalau ada order baru
   useEffect(() => {

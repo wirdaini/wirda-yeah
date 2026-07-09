@@ -13,11 +13,11 @@ export default function ProductCard({ image, title, category, price, stock, onCl
       <div className="p-4">
         <Badge type="amber" className="mb-2">{category}</Badge>
         <h3 className="font-semibold text-coffee-900 mb-1">{title}</h3>
-        <p className="text-amber-600 font-bold">Rp {price?.toLocaleString("id-ID")}</p>
+        <p className="text-coffee-600 font-bold">Rp {price?.toLocaleString("id-ID")}</p>
         <p className="text-xs text-coffee-500 mt-1">Stock: {stock}</p>
         <button
           onClick={onClick}
-          className="mt-3 w-full bg-amber-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-amber-700 transition"
+          className="mt-3 w-full bg-coffee-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-coffee-700 transition"
         >
           Lihat Detail
         </button>

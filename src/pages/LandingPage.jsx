@@ -20,8 +20,8 @@ import {
   MapPin,
 } from "lucide-react";
 import { usersAPI } from "../services/usersAPI";
+import { useProducts } from "../hooks/useProducts";
 import logo from "../assets/logo.png";
-import products from "../data/products.json";
 
 const CATEGORY_ICONS = {
   "Kopi Susu": Coffee,
@@ -52,7 +52,7 @@ function ProductRating({ id }) {
   const { rating, reviews } = getProductRating(id);
   return (
     <div className="mt-2 flex items-center gap-1.5 text-xs text-coffee-600">
-      <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+      <Star className="h-3.5 w-3.5 fill-coffee-400 text-coffee-400" />
       <span className="font-semibold text-coffee-800">{rating}</span>
       <span className="text-coffee-400">·</span>
       <span>{reviews} ulasan</span>
@@ -65,7 +65,7 @@ function ProductCardItem({ item, popular }) {
     <div className="group relative overflow-hidden rounded-2xl border border-coffee-200 bg-white shadow-sm transition hover:shadow-md">
       {popular && (
         <div className="absolute left-3 top-3 z-10 flex items-center gap-1 rounded-full bg-coffee-900/90 px-2.5 py-1 text-[11px] font-semibold text-white shadow">
-          <Flame className="h-3 w-3 text-amber-400" />
+          <Flame className="h-3 w-3 text-coffee-400" />
           Populer minggu ini
         </div>
       )}
@@ -95,6 +95,9 @@ const TESTIMONIALS = [
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  // Data menu sekarang diambil dari tabel `products` Supabase,
+  // bukan dari data/products.json lagi.
+  const { products } = useProducts();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
@@ -199,8 +202,26 @@ export default function LandingPage() {
 
       <main>
         {/* HERO — split asimetris: headline kiri, foto besar kanan (bukan center generik) */}
-        <section id="home" className="mx-auto max-w-7xl px-6 pt-14 pb-20 lg:pt-20">
-          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <section id="home" className="relative mx-auto max-w-7xl px-6 pt-14 pb-20 lg:pt-20 overflow-hidden">
+          {/* elemen dekoratif: blob blur + dot pattern, biar gak terasa kotak generik */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-coffee-200/60 blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute right-0 top-1/3 h-96 w-96 rounded-full bg-coffee-300/40 blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/3 top-0 hidden h-40 w-40 opacity-[0.15] lg:block"
+            style={{
+              backgroundImage: "radial-gradient(circle, #8A5A2B 1.5px, transparent 1.5px)",
+              backgroundSize: "16px 16px",
+            }}
+          />
+
+          <div className="relative grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-coffee-300 bg-coffee-100 px-4 py-2 text-sm font-semibold text-coffee-600">
                 <Sparkles className="h-4 w-4" />
@@ -245,12 +266,13 @@ export default function LandingPage() {
             </div>
 
             <div className="relative">
-              <div className="overflow-hidden rounded-[2rem] bg-coffee-900">
+              <div className="relative overflow-hidden rounded-[2rem] bg-coffee-900">
                 <img
                   src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80"
                   alt="Barista menyeduh kopi"
                   className="h-[420px] w-full object-cover opacity-90"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-coffee-950/70 via-coffee-950/10 to-transparent" />
               </div>
               <div className="absolute -bottom-8 left-6 w-64 rounded-2xl border border-coffee-200 bg-white p-5 shadow-lg sm:w-72">
                 <div className="flex items-center justify-between">
@@ -530,7 +552,7 @@ export default function LandingPage() {
                     <p className="text-sm font-semibold text-coffee-900">{t.name}</p>
                     <div className="flex gap-0.5">
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="h-3 w-3 fill-amber-400 text-amber-400" />
+                        <Star key={i} className="h-3 w-3 fill-coffee-400 text-coffee-400" />
                       ))}
                     </div>
                   </div>

@@ -1,7 +1,8 @@
 // src/components/OrderTable.jsx
 import Badge from "./Badge";
+import { CreditCard } from "lucide-react";
 
-export default function OrderTable({ orders }) {
+export default function OrderTable({ orders, onProsesBayar }) {
   const statusColors = {
     Selesai: "success",
     Dibuat: "info",
@@ -20,6 +21,7 @@ export default function OrderTable({ orders }) {
               <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Total</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Status</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Waktu</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-coffee-600 uppercase">Aksi</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-coffee-100">
@@ -39,6 +41,19 @@ export default function OrderTable({ orders }) {
                 </td>
                 <td className="px-4 py-4 text-sm text-coffee-600">
                   {new Date(order.waktuPesan).toLocaleString("id-ID", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}
+                </td>
+                <td className="px-4 py-4">
+                  {order.status !== "Selesai" ? (
+                    <button
+                      onClick={() => onProsesBayar?.(order)}
+                      className="flex items-center gap-1 text-xs font-medium text-coffee-700 bg-coffee-100 hover:bg-coffee-200 px-2.5 py-1.5 rounded-lg transition-all"
+                    >
+                      <CreditCard className="w-3.5 h-3.5" />
+                      Proses Bayar
+                    </button>
+                  ) : (
+                    <span className="text-xs text-coffee-400">{order.metodePembayaran}</span>
+                  )}
                 </td>
               </tr>
             ))}

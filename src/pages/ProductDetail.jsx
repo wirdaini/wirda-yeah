@@ -1,32 +1,46 @@
+// src/pages/ProductDetail.jsx
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import products from "../data/products.json";
+import { fetchProductById } from "../services/productsAPI";
+import { Loader2 } from "lucide-react";
 
 export default function ProductDetail() {
   const { id } = useParams();
 
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const foundProduct = products.find((item) => item.id === Number(id));
-
-    if (!foundProduct) {
-      setError("Product not found");
-      return;
-    }
-
-    setProduct(foundProduct);
+    setLoading(true);
+    setError(null);
+    // Data produk sekarang diambil dari tabel `products` Supabase,
+    // bukan dari data/products.json lagi.
+    fetchProductById(id)
+      .then((found) => {
+        if (!found) {
+          setError("Product not found");
+        } else {
+          setProduct(found);
+        }
+      })
+      .catch(() => setError("Gagal memuat data produk dari database."))
+      .finally(() => setLoading(false));
   }, [id]);
+
+  // LOADING
+  if (loading) {
+    return (
+      <div className="p-6 flex items-center justify-center gap-2 text-sm text-coffee-500 h-64">
+        <Loader2 className="w-4 h-4 animate-spin" />
+        Memuat data produk...
+      </div>
+    );
+  }
 
   // ERROR
   if (error) {
     return <div className="text-red-600 p-6">{error}</div>;
-  }
-
-  // LOADING
-  if (!product) {
-    return <div className="p-6">Loading...</div>;
   }
 
   return (
@@ -70,7 +84,7 @@ export default function ProductDetail() {
           <p
             className="
             text-sm
-            text-amber-600
+            text-coffee-600
             mb-4
           "
           >
@@ -99,7 +113,7 @@ export default function ProductDetail() {
               className="
               text-xl
               font-bold
-              text-amber-600
+              text-coffee-600
             "
             >
               Rp {product.price.toLocaleString("id-ID")}

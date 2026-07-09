@@ -24,7 +24,7 @@ export default function Avatar({ name, size = "md", imageUrl = null }) {
   }
 
   return (
-    <div className={`${sizes[size]} rounded-full bg-gradient-to-r from-amber-500 to-amber-600 flex items-center justify-center font-bold text-white`}>
+    <div className={`${sizes[size]} rounded-full bg-gradient-to-r from-coffee-500 to-coffee-600 flex items-center justify-center font-bold text-white`}>
       {getInitials(name)}
     </div>
   );

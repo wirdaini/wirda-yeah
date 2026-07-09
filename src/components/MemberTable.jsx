@@ -2,9 +2,17 @@
 import Badge from "./Badge";
 import Avatar from "./Avatar";
 import { Eye, Trash2 } from "lucide-react";
-import { getLoyaltyTier } from "../lib/utils";
 
-export default function MemberTable({ members, onViewDetail }) {
+// Tier sekarang dibaca langsung dari kolom `tier` di database (bukan
+// dihitung ulang dari poin di frontend), karena kolom ini sudah jadi
+// sumber kebenaran (source of truth) begitu datanya di Supabase.
+const tierBadgeType = {
+  Silver: "default",
+  Gold: "amber",
+  Platinum: "purple",
+};
+
+export default function MemberTable({ members, onViewDetail, onDelete }) {
   return (
     <div className="bg-white rounded-xl border border-coffee-200 overflow-hidden">
       <div className="overflow-x-auto">
@@ -24,38 +32,36 @@ export default function MemberTable({ members, onViewDetail }) {
               <tr key={member.id} className="hover:bg-coffee-50 transition-colors">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
-                    <Avatar name={member.nama} size="sm" />
-                    <span className="text-sm font-medium text-coffee-900">{member.nama}</span>
+                    <Avatar name={member.name} size="sm" />
+                    <span className="text-sm font-medium text-coffee-900">{member.name}</span>
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <Badge
-                    type={
-                      getLoyaltyTier(member.poin) === "Gold"
-                        ? "amber"
-                        : getLoyaltyTier(member.poin) === "Platinum"
-                        ? "purple"
-                        : "default"
-                    }
-                  >
-                    {getLoyaltyTier(member.poin)}
+                  <Badge type={tierBadgeType[member.tier] || "default"}>
+                    {member.tier || "Silver"}
                   </Badge>
                 </td>
-                <td className="px-4 py-3 text-sm text-coffee-900">{member.poin}</td>
-                <td className="px-4 py-3 text-sm text-coffee-900">Rp {member.totalTransaksi?.toLocaleString("id-ID")}</td>
+                <td className="px-4 py-3 text-sm text-coffee-900">{member.total_points ?? 0}</td>
+                <td className="px-4 py-3 text-sm text-coffee-900">
+                  {member.total_transactions ?? 0}x
+                </td>
                 <td className="px-4 py-3">
-                  <Badge type="info">{member.segmen}</Badge>
+                  <Badge type="info">{member.segment}</Badge>
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => onViewDetail(member)}
-                      className="text-amber-600 hover:text-amber-700 flex items-center gap-1 text-sm transition-colors"
+                      className="text-coffee-600 hover:text-coffee-700 flex items-center gap-1 text-sm transition-colors"
                     >
                       <Eye className="w-4 h-4" />
                       Detail
                     </button>
-                    <button className="text-coffee-300 hover:text-red-600 transition-colors">
+                    <button
+                      onClick={() => onDelete?.(member)}
+                      className="text-coffee-300 hover:text-red-600 transition-colors"
+                      title="Hapus member"
+                    >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>

@@ -6,18 +6,22 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["'Geist Variable'", "Geist", "system-ui", "-apple-system", "sans-serif"],
+      },
       colors: {
         coffee: {
           50: "#FDFBF8",
           100: "#FAF3E8",
           200: "#F3E5D3",
-          300: "#EDE4DA",
+          300: "#E8DACB",
           400: "#D8C4B5",
           500: "#C08A47",
           600: "#8A5A2B",
           700: "#5A4436",
           800: "#3E2723",
           900: "#2A1A17",
+          950: "#1A0F0D",
         },
         muted: {
           DEFAULT: "#A0917F",

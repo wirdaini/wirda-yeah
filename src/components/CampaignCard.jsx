@@ -25,8 +25,8 @@ export default function CampaignCard({ campaign }) {
 
       <div className="space-y-2 mb-4">
         <div className="flex items-center gap-2 text-sm text-coffee-600">
-          <Tag className="w-4 h-4 text-amber-600" />
-          <span className="font-medium text-amber-700">{campaign.diskon}</span>
+          <Tag className="w-4 h-4 text-coffee-600" />
+          <span className="font-medium text-coffee-700">{campaign.diskon}</span>
         </div>
         <div className="flex items-center gap-2 text-sm text-coffee-600">
           <Users className="w-4 h-4" />

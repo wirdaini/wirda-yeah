@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Users, TrendingUp, ShoppingCart, Award, Coffee, ChevronRight, Plus } from "lucide-react";
 import StatCard from "../components/StatCard";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from "recharts";
-import ordersData from "../data/orders.json";
+import { useTransactions } from "../hooks/useTransactions";
 import summary from "../data/dashboardSummary.json";
 import PageHeader from "../components/PageHeader";
 import Card from "../components/Card";
@@ -33,9 +33,14 @@ const statusColors = {
 };
 
 export default function DashboardPage() {
+  // Tabel "Transaksi Terbaru" sekarang ambil dari Supabase (tabel `transactions`)
+  // lewat useTransactions(), bukan orders.json lagi.
+  const { transactions } = useTransactions();
+
   // Angka ringkasan (total penjualan, total order, member, poin, menu terlaris, dst)
-  // dihitung dari SELURUH data Excel (bukan cuma 400 order terbaru yang di-cache di orders.json),
-  // supaya selalu sama persis dengan angka yang muncul di Power BI.
+  // dihitung dari SELURUH data Excel (bukan dari tabel `transactions` yang datanya
+  // baru mulai terisi dari input aplikasi), supaya selalu sama persis dengan angka
+  // yang muncul di Power BI. Ini TIDAK diganti, tetap dari dashboardSummary.json.
   const totalMembers = summary.totalMember;
   const totalPoin = summary.totalPoin;
   const totalPenjualan = summary.totalPenjualan;
@@ -50,9 +55,11 @@ export default function DashboardPage() {
     .map((c) => [c.kategori, c.total]);
   const maxCategorySales = Math.max(...summary.categorySales.map((c) => c.total), 1);
 
-  // Tabel "Transaksi Terbaru" tetap pakai orders.json (400 transaksi paling baru)
-  // karena tabel ini memang cuma menampilkan beberapa baris, tidak perlu 22 ribu data.
-  const recentOrders = [...ordersData]
+  // Tabel "Transaksi Terbaru" nampilin 5 transaksi paling baru dari database
+  // (tabel `transactions` masih kosong/sedikit di awal karena baru mulai diisi
+  // dari OrdersPage.jsx, beda dengan orders.json lama yang sudah ada 400 baris
+  // data dummy dari Excel).
+  const recentOrders = [...transactions]
     .sort((a, b) => new Date(b.waktuPesan) - new Date(a.waktuPesan))
     .slice(0, 5);
 
@@ -91,7 +98,7 @@ export default function DashboardPage() {
             </div>
             <div>
               <p className="text-xs text-coffee-400">Menunggu</p>
-              <p className="text-xl font-bold text-amber-600">{menungguCount}</p>
+              <p className="text-xl font-bold text-coffee-600">{menungguCount}</p>
             </div>
           </div>
           <Link to="/orders" className="inline-flex items-center gap-1 text-xs font-medium text-coffee-700 border border-coffee-300 rounded-full px-3 py-1.5 hover:bg-coffee-50 transition-all">
@@ -179,16 +186,24 @@ export default function DashboardPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-coffee-100">
-                {recentOrders.map((order) => (
-                  <tr key={order.id} className="hover:bg-coffee-50 transition-colors">
-                    <td className="px-4 py-3 text-sm font-medium text-coffee-900">{order.id}</td>
-                    <td className="px-4 py-3 text-sm text-coffee-700">{order.namaPelanggan}</td>
-                    <td className="px-4 py-3">
-                      <Badge type={statusColors[order.status] || "default"}>{order.status}</Badge>
+                {recentOrders.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="px-4 py-6 text-center text-sm text-coffee-400">
+                      Belum ada transaksi.
                     </td>
-                    <td className="px-4 py-3 text-sm font-medium text-coffee-900">Rp {order.totalHarga?.toLocaleString("id-ID")}</td>
                   </tr>
-                ))}
+                ) : (
+                  recentOrders.map((order) => (
+                    <tr key={order.id} className="hover:bg-coffee-50 transition-colors">
+                      <td className="px-4 py-3 text-sm font-medium text-coffee-900">{order.id}</td>
+                      <td className="px-4 py-3 text-sm text-coffee-700">{order.namaPelanggan}</td>
+                      <td className="px-4 py-3">
+                        <Badge type={statusColors[order.status] || "default"}>{order.status}</Badge>
+                      </td>
+                      <td className="px-4 py-3 text-sm font-medium text-coffee-900">Rp {order.totalHarga?.toLocaleString("id-ID")}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

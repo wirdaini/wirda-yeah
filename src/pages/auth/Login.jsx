@@ -87,7 +87,7 @@ export default function Login() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Masukkan email"
-                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                 required
               />
             </div>
@@ -107,7 +107,7 @@ export default function Login() {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Masukkan password"
-                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full pl-11 pr-4 py-3 border border-coffee-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-coffee-500 focus:border-transparent"
                 required
               />
             </div>
@@ -116,7 +116,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-amber-600 to-amber-700 text-white py-3 rounded-lg font-medium hover:from-amber-700 hover:to-amber-800 transition-all shadow-lg hover:shadow-xl disabled:opacity-50"
+            className="w-full bg-gradient-to-r from-coffee-600 to-coffee-700 text-white py-3 rounded-lg font-medium hover:from-coffee-700 hover:to-coffee-800 transition-all shadow-lg hover:shadow-xl disabled:opacity-50"
           >
             {loading ? "Loading..." : "Login"}
           </button>

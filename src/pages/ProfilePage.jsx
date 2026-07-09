@@ -1,15 +1,30 @@
 // src/pages/ProfilePage.jsx
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Mail, Phone, Calendar, Award, Gift, ShoppingBag, Coffee, LogOut } from "lucide-react";
-import membersData from "../data/members.json";
-import ordersData from "../data/orders.json";
+import { Mail, Phone, Calendar, Award, Gift, ShoppingBag, Coffee, LogOut, CheckCircle2, Cake, Loader2 } from "lucide-react";
+// Riwayat transaksi sekarang diambil dari tabel `transactions` Supabase
+// lewat useTransactions() (Fase 3), bukan dari data/orders.json lagi.
+// Catatan: OrdersPage.jsx saat ini masih menyimpan memberId sebagai null
+// karena belum ada pemilihan member di form order, jadi "Riwayat Transaksi
+// Saya" di bawah baru akan terisi setelah form order dilengkapi fitur
+// pilih member (di luar cakupan Fase 3 migrasi database ini).
+import { useTransactions } from "../hooks/useTransactions";
+import { useMembers } from "../hooks/useMembers";
+import { updateMember } from "../services/membersAPI";
 import { getLoyaltyTier, nextTierProgress, tierClassName } from "../lib/utils";
+import { daysUntilBirthday, formatBirthdayLabel } from "../lib/notifications";
 import PageHeader from "../components/PageHeader";
 import Card from "../components/Card";
 import Badge from "../components/Badge";
 import Avatar from "../components/Avatar";
 import StatCard from "../components/StatCard";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 
 const REWARDS = [
   { nama: "Minuman Gratis", poin: 50, icon: "☕", desc: "1x minuman pilihan (max Rp 35.000)" },
@@ -21,35 +36,81 @@ export default function ProfilePage() {
   const navigate = useNavigate();
   const [account, setAccount] = useState(null);
 
+  // Data member sekarang diambil dari tabel `members` Supabase lewat
+  // useMembers, bukan dari localMembers.js (json + localStorage) lagi.
+  const { members, loading: loadingMembers, error: errorMembers, reload } = useMembers();
+  const { transactions, loading: loadingTransactions, error: errorTransactions } = useTransactions();
+
+  const loading = loadingMembers || loadingTransactions;
+  const error = errorMembers || errorTransactions;
+
+  const [redeemHistory, setRedeemHistory] = useState([]);
+  const [confirmReward, setConfirmReward] = useState(null);
+  const [justRedeemed, setJustRedeemed] = useState(null);
+  const [redeeming, setRedeeming] = useState(false);
+  const [redeemError, setRedeemError] = useState("");
+
   useEffect(() => {
     const saved = localStorage.getItem("user");
     if (saved) setAccount(JSON.parse(saved));
   }, []);
 
-  // Cocokkan akun login (tabel users di Supabase) dengan data member CRM (dari Excel)
-  // lewat email, karena keduanya sumber data yang berbeda dan belum ada relasi id langsung.
   const memberRecord = useMemo(() => {
     if (!account?.email) return null;
-    return membersData.find(
+    return members.find(
       (m) => m.email?.toLowerCase() === account.email.toLowerCase()
     );
-  }, [account]);
+  }, [account, members]);
 
   const myOrders = useMemo(() => {
     if (!memberRecord) return [];
-    return ordersData
+    return transactions
       .filter((o) => o.memberId === memberRecord.id)
       .sort((a, b) => new Date(b.waktuPesan) - new Date(a.waktuPesan));
-  }, [memberRecord]);
+  }, [memberRecord, transactions]);
 
-  const poin = memberRecord?.poin ?? 0;
+  // Poin langsung dari database (total_points), bukan lagi dikurangi
+  // secara lokal — penukaran reward sekarang beneran update ke Supabase.
+  const poin = memberRecord?.total_points ?? 0;
   const tier = getLoyaltyTier(poin);
   const progress = nextTierProgress(poin);
+
+  // UC06: cek apakah member ini lagi/mau ulang tahun dalam 7 hari ke depan
+  const birthdayDaysUntil = memberRecord ? daysUntilBirthday(memberRecord.birth_date) : null;
+  const showBirthdayPromo = birthdayDaysUntil !== null && birthdayDaysUntil <= 7;
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     navigate("/login");
+  };
+
+  const handleConfirmRedeem = async () => {
+    if (!confirmReward || !memberRecord) return;
+    setRedeeming(true);
+    setRedeemError("");
+    try {
+      // Poin dipotong beneran di tabel `members` Supabase (UC04:
+      // "Sistem memotong poin sesuai reward dan mencatat riwayat
+      // penukaran"). Riwayat penukarannya sendiri masih disimpan di
+      // state lokal karena belum ada tabel khusus riwayat redeem.
+      await updateMember(memberRecord.id, {
+        total_points: Math.max(0, poin - confirmReward.poin),
+      });
+      await reload();
+
+      setRedeemHistory((prev) => [
+        { ...confirmReward, tanggal: new Date().toISOString(), kode: `RDM${Math.floor(Math.random() * 90000 + 10000)}` },
+        ...prev,
+      ]);
+      setJustRedeemed(confirmReward.nama);
+      setConfirmReward(null);
+      setTimeout(() => setJustRedeemed(null), 4000);
+    } catch {
+      setRedeemError("Gagal menukar poin. Coba lagi.");
+    } finally {
+      setRedeeming(false);
+    }
   };
 
   if (!account) {
@@ -58,7 +119,7 @@ export default function ProfilePage() {
         <Card>
           <p className="text-sm text-coffee-600">
             Data akun tidak ditemukan. Silakan{" "}
-            <button className="text-amber-600 underline" onClick={() => navigate("/login")}>
+            <button className="text-coffee-600 underline" onClick={() => navigate("/login")}>
               login
             </button>{" "}
             kembali.
@@ -68,9 +129,35 @@ export default function ProfilePage() {
     );
   }
 
+  if (loading) {
+    return (
+      <div className="p-6 flex items-center justify-center gap-2 text-sm text-coffee-500 h-64">
+        <Loader2 className="w-4 h-4 animate-spin" />
+        Memuat data profile dari database...
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="p-6 text-sm text-red-600">{error}</div>;
+  }
+
   return (
     <div className="p-6 space-y-6">
       <PageHeader title="Profile Saya" subtitle="Info akun, poin, dan reward kamu" breadcrumb="Profile" />
+
+      {justRedeemed && (
+        <div className="flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 text-sm rounded-lg px-4 py-3">
+          <CheckCircle2 className="w-4 h-4 shrink-0" />
+          Berhasil tukar poin untuk <span className="font-medium">{justRedeemed}</span>. Tunjukkan kode ke kasir ya.
+        </div>
+      )}
+
+      {redeemError && (
+        <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">
+          {redeemError}
+        </div>
+      )}
 
       {/* Kartu identitas akun */}
       <Card>
@@ -83,15 +170,15 @@ export default function ProfilePage() {
                 <span className="flex items-center gap-1">
                   <Mail className="w-3.5 h-3.5" /> {account.email || "-"}
                 </span>
-                {memberRecord?.noHP && (
+                {memberRecord?.phone && (
                   <span className="flex items-center gap-1">
-                    <Phone className="w-3.5 h-3.5" /> {memberRecord.noHP}
+                    <Phone className="w-3.5 h-3.5" /> {memberRecord.phone}
                   </span>
                 )}
               </div>
               <div className="flex gap-2 mt-2">
                 <Badge type="info">{account.role || "member"}</Badge>
-                {memberRecord && <Badge type="default">{memberRecord.segmen}</Badge>}
+                {memberRecord && <Badge type="default">{memberRecord.segment}</Badge>}
               </div>
             </div>
           </div>
@@ -104,6 +191,24 @@ export default function ProfilePage() {
           </button>
         </div>
       </Card>
+
+      {memberRecord && showBirthdayPromo && (
+        <div className="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 p-5 flex items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm">
+            <Cake className="w-6 h-6 text-amber-600" />
+          </div>
+          <div className="flex-1">
+            <p className="font-semibold text-amber-900">
+              {birthdayDaysUntil === 0
+                ? `Selamat ulang tahun, ${memberRecord.name.split(" ")[0]}! 🎉`
+                : `Ulang tahunmu ${formatBirthdayLabel(birthdayDaysUntil).toLowerCase()}!`}
+            </p>
+            <p className="text-sm text-amber-700 mt-0.5">
+              Nikmati promo spesial ulang tahun: diskon 20% untuk semua menu, berlaku 3 hari sekitar tanggal lahirmu. Tunjukkan halaman ini ke kasir ya ☕
+            </p>
+          </div>
+        </div>
+      )}
 
       {!memberRecord && (
         <Card>
@@ -151,12 +256,12 @@ export default function ProfilePage() {
             <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <StatCard
                 label="Total Transaksi"
-                value={`Rp ${(memberRecord.totalTransaksi || 0).toLocaleString("id-ID")}`}
+                value={`Rp ${(memberRecord.total_transactions || 0).toLocaleString("id-ID")}`}
                 icon={ShoppingBag}
                 color="amber"
               />
-              <StatCard label="Jumlah Kunjungan" value={memberRecord.jumlahKunjungan || 0} icon={Calendar} color="blue" />
-              <StatCard label="Menu Favorit" value={memberRecord.menuFavorit || "-"} icon={Coffee} color="green" />
+              <StatCard label="Jumlah Kunjungan" value={memberRecord.visit_count || 0} icon={Calendar} color="blue" />
+              <StatCard label="Menu Favorit" value={memberRecord.favorite_menu || "-"} icon={Coffee} color="green" />
             </div>
           </div>
 
@@ -205,7 +310,7 @@ export default function ProfilePage() {
             )}
           </Card>
 
-          {/* Reward yang bisa ditukar */}
+          {/* Reward yang bisa ditukar (UC04) */}
           <Card>
             <h3 className="font-semibold text-coffee-900 mb-4">Reward yang Bisa Ditukar</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -214,12 +319,12 @@ export default function ProfilePage() {
                 return (
                   <div
                     key={r.nama}
-                    className={`border rounded-lg p-4 transition-all ${
-                      eligible ? "border-amber-300 bg-amber-50/40" : "border-coffee-200"
+                    className={`border rounded-lg p-4 transition-all flex flex-col ${
+                      eligible ? "border-coffee-300 bg-coffee-50/40" : "border-coffee-200"
                     }`}
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+                      <div className="w-10 h-10 bg-coffee-100 rounded-lg flex items-center justify-center">
                         <span className="text-xl">{r.icon}</span>
                       </div>
                       <div>
@@ -227,23 +332,91 @@ export default function ProfilePage() {
                         <p className="text-xs text-coffee-600">{r.poin} poin</p>
                       </div>
                     </div>
-                    <p className="text-sm text-coffee-600 mb-3">{r.desc}</p>
-                    <Badge type={eligible ? "success" : "default"}>
-                      {eligible ? (
-                        <span className="flex items-center gap-1">
-                          <Gift className="w-3.5 h-3.5" /> Siap ditukar
-                        </span>
-                      ) : (
-                        `Butuh ${r.poin - poin} poin lagi`
-                      )}
-                    </Badge>
+                    <p className="text-sm text-coffee-600 mb-3 flex-1">{r.desc}</p>
+                    {eligible ? (
+                      <button
+                        onClick={() => setConfirmReward(r)}
+                        className="flex items-center justify-center gap-1.5 text-sm font-medium bg-coffee-800 hover:bg-coffee-900 text-white rounded-lg px-3 py-2 transition-all"
+                      >
+                        <Gift className="w-3.5 h-3.5" /> Tukar Sekarang
+                      </button>
+                    ) : (
+                      <Badge type="default">{`Butuh ${r.poin - poin} poin lagi`}</Badge>
+                    )}
                   </div>
                 );
               })}
             </div>
           </Card>
+
+          {/* Riwayat penukaran reward */}
+          {redeemHistory.length > 0 && (
+            <Card>
+              <h3 className="font-semibold text-coffee-900 mb-4">Riwayat Penukaran Reward</h3>
+              <div className="space-y-2">
+                {redeemHistory.map((h, idx) => (
+                  <div key={idx} className="flex items-center justify-between border border-coffee-100 rounded-lg px-4 py-3">
+                    <div className="flex items-center gap-3">
+                      <span className="text-xl">{h.icon}</span>
+                      <div>
+                        <p className="text-sm font-medium text-coffee-900">{h.nama}</p>
+                        <p className="text-xs text-coffee-500">
+                          Kode: {h.kode} • {new Date(h.tanggal).toLocaleString("id-ID", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}
+                        </p>
+                      </div>
+                    </div>
+                    <Badge type="success">-{h.poin} poin</Badge>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          )}
         </>
       )}
+
+      {/* Dialog konfirmasi tukar poin */}
+      <Dialog open={!!confirmReward} onOpenChange={(open) => !open && setConfirmReward(null)}>
+        <DialogContent className="sm:max-w-sm bg-white">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Gift className="w-5 h-5 text-coffee-600" />
+              Konfirmasi Tukar Poin
+            </DialogTitle>
+          </DialogHeader>
+          {confirmReward && (
+            <div className="space-y-4">
+              <div className="bg-coffee-50 rounded-lg p-4 flex items-center gap-3">
+                <span className="text-2xl">{confirmReward.icon}</span>
+                <div>
+                  <p className="font-medium text-coffee-900">{confirmReward.nama}</p>
+                  <p className="text-xs text-coffee-600">{confirmReward.desc}</p>
+                </div>
+              </div>
+              <p className="text-sm text-coffee-700">
+                Poin kamu akan berkurang <span className="font-semibold">{confirmReward.poin} poin</span>, dari{" "}
+                <span className="font-semibold">{poin}</span> jadi{" "}
+                <span className="font-semibold">{poin - confirmReward.poin}</span>. Lanjutkan?
+              </p>
+              <DialogFooter>
+                <button
+                  onClick={() => setConfirmReward(null)}
+                  className="px-4 py-2.5 rounded-lg text-sm font-medium border border-coffee-300 text-coffee-700 hover:bg-coffee-50 transition-all"
+                >
+                  Batal
+                </button>
+                <button
+                  onClick={handleConfirmRedeem}
+                  disabled={redeeming}
+                  className="px-4 py-2.5 rounded-lg text-sm font-medium bg-coffee-800 hover:bg-coffee-900 text-white transition-all shadow-sm disabled:opacity-50 flex items-center gap-2"
+                >
+                  {redeeming && <Loader2 className="w-4 h-4 animate-spin" />}
+                  Ya, Tukar Poin
+                </button>
+              </DialogFooter>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

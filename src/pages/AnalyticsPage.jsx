@@ -14,9 +14,9 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import ordersData from "../data/orders.json";
-import membersData from "../data/members.json";
-import { DollarSign, ShoppingBag, Users } from "lucide-react";
+import { useTransactions } from "../hooks/useTransactions";
+import { useMembers } from "../hooks/useMembers";
+import { DollarSign, ShoppingBag, Users, Loader2 } from "lucide-react";
 import PageHeader from "../components/PageHeader";
 import StatCard from "../components/StatCard";
 import Card from "../components/Card";
@@ -44,8 +44,18 @@ const weeklyTrend = [
 const COLORS = ["#f59e0b", "#3b82f6", "#10b981", "#ef4444", "#8b5cf6"];
 
 export default function AnalyticsPage() {
+  // Data member sekarang diambil dari tabel `members` Supabase,
+  // bukan dari data/members.json lagi.
+  const { members, loading: loadingMembers, error: errorMembers } = useMembers();
+  // Data transaksi sekarang diambil dari tabel `transactions` Supabase,
+  // bukan dari data/orders.json lagi (Fase 3).
+  const { transactions, loading: loadingTransactions, error: errorTransactions } = useTransactions();
+
+  const loading = loadingMembers || loadingTransactions;
+  const error = errorMembers || errorTransactions;
+
   const menuSales = {};
-  ordersData.forEach((order) => {
+  transactions.forEach((order) => {
     order.items.forEach((item) => {
       menuSales[item.menu] =
         (menuSales[item.menu] || 0) + item.harga * item.qty;
@@ -57,8 +67,8 @@ export default function AnalyticsPage() {
     .slice(0, 5)
     .map(([name, value]) => ({ name, value }));
 
-  const segmentSales = membersData.reduce((acc, member) => {
-    acc[member.segmen] = (acc[member.segmen] || 0) + member.totalTransaksi;
+  const segmentSales = members.reduce((acc, member) => {
+    acc[member.segment] = (acc[member.segment] || 0) + (member.total_transactions || 0);
     return acc;
   }, {});
 
@@ -70,9 +80,20 @@ export default function AnalyticsPage() {
   const totalRevenue = dailySales.reduce((sum, day) => sum + day.penjualan, 0);
   const totalOrders = dailySales.reduce((sum, day) => sum + day.orders, 0);
   const avgOrderValue = Math.round(totalRevenue / totalOrders);
-  const newMembers = membersData.filter(
-    (m) => m.segmen === "Baru",
-  ).length;
+  const newMembers = members.filter((m) => m.segment === "Baru").length;
+
+  if (loading) {
+    return (
+      <div className="p-6 flex items-center justify-center gap-2 text-sm text-coffee-500 h-64">
+        <Loader2 className="w-4 h-4 animate-spin" />
+        Memuat data analitik dari database...
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="p-6 text-sm text-red-600">{error}</div>;
+  }
 
   return (
     <div className="p-6 space-y-6">
@@ -121,15 +142,15 @@ export default function AnalyticsPage() {
       {/* TABS dengan efek aktif */}
       <Tabs defaultValue="sales">
         <TabsList className="bg-coffee-100 p-1 rounded-lg w-fit">
-          <TabsTrigger 
-            value="sales" 
-            className="data-[state=active]:bg-amber-600 data-[state=active]:text-white data-[state=active]:shadow-sm px-6 py-2 rounded-md transition-all duration-200"
+          <TabsTrigger
+            value="sales"
+            className="data-[state=active]:bg-coffee-600 data-[state=active]:text-white data-[state=active]:shadow-sm px-6 py-2 rounded-md transition-all duration-200"
           >
             Sales
           </TabsTrigger>
-          <TabsTrigger 
-            value="customer" 
-            className="data-[state=active]:bg-amber-600 data-[state=active]:text-white data-[state=active]:shadow-sm px-6 py-2 rounded-md transition-all duration-200"
+          <TabsTrigger
+            value="customer"
+            className="data-[state=active]:bg-coffee-600 data-[state=active]:text-white data-[state=active]:shadow-sm px-6 py-2 rounded-md transition-all duration-200"
           >
             Customer
           </TabsTrigger>
